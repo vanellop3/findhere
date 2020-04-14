@@ -5,24 +5,27 @@ let utilitySchema = new Schema({
     title: {
         type: String
     },
-    category:{
-      type:String
+    category: {
+        type: String
     },
     description: {
         type: String
     },
-    price:{
-        type:Number
+    price: {
+        type: Number
     },
-    creatorId:{
-      type:String
+    creatorId: {
+        type: String
     },
     date: {
         type: Date,
         default: Date.now
     },
-    phone:{
-        type:String
+    town: {
+        type: String
+    },
+    phone: {
+        type: String
     }
 }, {
     collection: 'utility'
