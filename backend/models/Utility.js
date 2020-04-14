@@ -17,6 +17,10 @@ let utilitySchema = new Schema({
     creatorId:{
       type:String
     },
+    date: {
+        type: Date,
+        default: Date.now
+    },
     phone:{
         type:String
     }

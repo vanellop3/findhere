@@ -15,6 +15,8 @@ import setAuthToken from "./setAuthToken";
 import jwt_decode from 'jwt-decode';
 import {setCurrentUser, logoutUser} from './actions/authentication';
 import Navbar from "./components/Navbar";
+import UserUtilities from "./components/UserUtilities";
+import EditProfile from "./components/edit-profile";
 
 console.log(localStorage.jwtToken);
 
@@ -39,8 +41,8 @@ function App() {
                     {/*<Link to={"/create-utility"} className="nav-link">*/}
                     {/*    Create Student*/}
                     {/*</Link>*/}
-                    <Link to={"/utility-list"} className="nav-link">
-                        Student List
+                    <Link to={"/my-utilities"} className="nav-link">
+                        Utility List
                     </Link>
 
                     <div className="wrapper">
@@ -48,9 +50,11 @@ function App() {
                             {/*<Route exact path='/' component={CreateUtility}/>*/}
                             <Route path="/create-utility" component={CreateUtility}/>
                             <Route path="/edit-utility/:id" component={EditUtility}/>
+                            <Route path="/edit-profile/:id" component={EditProfile}/>
                             <Route path="/utility-list" component={UtilityList}/>
                             <Route exact path="/register" component={Register}/>
                             <Route exact path="/login" component={Login}/>
+                            <Route exact path="/my-utilities" component={UserUtilities}/>
                         </Switch>
                     </div>
                 </div>

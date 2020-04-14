@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import UtilityTableRow from './UtilityTableRow';
+import {connect} from "react-redux";
 
 
-export default class UtilitytList extends Component {
+class UtilitytList extends Component {
 
     constructor(props) {
         super(props)
@@ -27,27 +28,32 @@ export default class UtilitytList extends Component {
 
     DataTable() {
         return this.state.utilities.map((res, i) => {
-            return <UtilityTableRow obj={res} key={i} />;
+            return <UtilityTableRow obj={res} key={i}/>;
         });
     }
 
 
     render() {
-        return (<div className="table-wrapper">
-            <Table striped bordered hover>
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Phone</th>
-                </tr>
-                </thead>
-                <tbody>
-                {this.DataTable()}
-                </tbody>
-            </Table>
-        </div>);
+        return (
+            <div className="table-wrapper">
+                <Table striped bordered hover>
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Phone</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.DataTable()}
+                    </tbody>
+                </Table>
+            </div>);
+
     }
 }
+
+
+export default UtilitytList

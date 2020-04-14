@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { logoutUser } from '../actions/authentication';
-import { withRouter } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {logoutUser} from '../actions/authentication';
+import {withRouter} from 'react-router-dom';
 
 class Navbar extends Component {
 
@@ -14,13 +14,27 @@ class Navbar extends Component {
 
     render() {
         const {isAuthenticated, user} = this.props.auth;
-        console.log(this.props.auth.user.id);
         const authLinks = (
             <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                    <Link className="nav-link" to="/my-utilities">My utilities</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/create-utility">Add utility</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to={"/edit-profile/" + this.props.auth.user.id}>My Profile</Link>
+                </li>
+                {this.props.auth.user.isAdmin ?
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/utility-list">All utilities</Link>
+                    </li>
+                    : <></>
+                }
                 <a href="" className="nav-link" onClick={this.onLogout.bind(this)}>
                     <img src={user.avatar} alt={user.name} title={user.name}
                          className="rounded-circle"
-                         style={{ width: '25px', marginRight: '5px'}} />
+                         style={{width: '25px', marginRight: '5px'}}/>
                     Logout
                 </a>
             </ul>
@@ -35,7 +49,7 @@ class Navbar extends Component {
                 </li>
             </ul>
         )
-        return(
+        return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <Link className="navbar-brand" to="/">Redux Node Auth</Link>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -45,6 +59,7 @@ class Navbar extends Component {
         )
     }
 }
+
 Navbar.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
@@ -54,4 +69,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps, { logoutUser })(withRouter(Navbar));
+export default connect(mapStateToProps, {logoutUser})(withRouter(Navbar));

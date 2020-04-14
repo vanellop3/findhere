@@ -56,6 +56,7 @@ class Register extends Component {
 
     render() {
         const { errors } = this.state;
+        console.log(this.state);
         return(
             <div className="container" style={{ marginTop: '50px', width: '700px'}}>
                 <h2 style={{marginBottom: '40px'}}>Registration</h2>

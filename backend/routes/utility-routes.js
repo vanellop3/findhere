@@ -1,12 +1,20 @@
+const validateUtility = require('../validation/utility');
+
 let mongoose = require('mongoose'),
     express = require('express'),
     router = express.Router();
 
-// Student Model
+// Utility Model
 let utilitySchema = require('../models/Utility');
+console.log('hereee');
 
 // CREATE Student
-router.route('/create-utility').post((req, res, next) => {
+router.route('/create-utility').post(function (req, res,next) {
+    const {errors, isValid} = validateUtility(req.body);
+    console.log(isValid);
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
     utilitySchema.create(req.body, (error, data) => {
         if (error) {
             return next(error)
@@ -17,7 +25,7 @@ router.route('/create-utility').post((req, res, next) => {
     })
 });
 
-// READ Students
+// READ Utilities
 router.route('/').get((req, res) => {
     utilitySchema.find((error, data) => {
         if (error) {
@@ -28,7 +36,7 @@ router.route('/').get((req, res) => {
     })
 })
 
-// Get Single Student
+// Get Single Utilities
 router.route('/edit-utility/:id').get((req, res) => {
     utilitySchema.findById(req.params.id, (error, data) => {
         if (error) {
@@ -40,7 +48,7 @@ router.route('/edit-utility/:id').get((req, res) => {
 })
 
 
-// Update Student
+// Update Utilities
 router.route('/update-utility/:id').put((req, res, next) => {
     utilitySchema.findByIdAndUpdate(req.params.id, {
         $set: req.body
@@ -55,7 +63,7 @@ router.route('/update-utility/:id').put((req, res, next) => {
     })
 })
 
-// Delete Student
+// Delete Utilities
 router.route('/delete-utility/:id').delete((req, res, next) => {
     utilitySchema.findByIdAndRemove(req.params.id, (error, data) => {
         if (error) {

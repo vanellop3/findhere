@@ -70,7 +70,7 @@ export default class EditUtility extends Component {
             category: this.state.category,
             description: this.state.description,
             price: this.state.price,
-            creatorId: this.state.creatorId,
+            // creatorId: this.state.creatorId,
             phone: this.state.phone
         };
 
