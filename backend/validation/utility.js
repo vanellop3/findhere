@@ -9,28 +9,40 @@ module.exports = function validateUtility(data) {
     data.phone = !isEmpty(data.phone) ? data.phone : '';
     data.town = !isEmpty(data.town) ? data.town : '';
 
-    if(!Validator.isLength(data.title, { min: 2, max: 100 })) {
+    if (!Validator.isLength(data.title, {min: 2, max: 100})) {
         errors.title = 'Title must be between 2 to 100 chars';
     }
 
-    if(Validator.isEmpty(data.title)) {
+    if (Validator.isEmpty(data.title)) {
         errors.title = 'Name field is required';
     }
 
-    if(Validator.isEmpty(data.category)) {
+    if (Validator.isEmpty(data.category)) {
         errors.category = 'Category is required';
     }
 
-    if(Validator.isEmpty(data.town)) {
+    if (Validator.isEmpty(data.town)) {
         errors.town = 'Town is required';
     }
 
-    if(Validator.isEmpty(data.price)) {
+    if (Validator.isEmpty(data.price)) {
         errors.price = 'Price is required';
     }
 
-    if(Validator.isEmpty(data.phone)) {
-        errors.phone = 'Price is required';
+    if (Validator.isNumeric(data.price)) {
+        errors.price = 'Price is required';
+    }
+
+    if (Validator.isEmpty(data.phone)) {
+        errors.phone = 'Mobile phone is required';
+    }
+
+    if (Validator.isMobilePhone(data.phone)) {
+        errors.phone = 'Please add a valid phone number';
+    }
+
+    if (Validator.isNumeric(data.phone)) {
+        errors.phone = 'Please add a valid phone number';
     }
 
     return {

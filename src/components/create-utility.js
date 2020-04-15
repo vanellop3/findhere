@@ -4,19 +4,14 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {addUtility} from '../actions/utility';
 import {withRouter} from "react-router-dom";
+import data from '../towns';
 
 class CreateUtility extends Component {
 
     constructor(props) {
-        super()
-
-        // Setting up functions
-        this.onChangeUtilityTitle = this.onChangeUtilityTitle.bind(this);
-        this.onChangeUtilityCategory = this.onChangeUtilityCategory.bind(this);
-        this.onChangeUtilityDescription = this.onChangeUtilityDescription.bind(this);
-        this.onChangeUtilityPrice = this.onChangeUtilityPrice.bind(this);
-        this.onChangeUtilityPhone = this.onChangeUtilityPhone.bind(this);
+        super();
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
 
         // Setting up state
         this.state = {
@@ -25,29 +20,17 @@ class CreateUtility extends Component {
             description: '',
             price: '',
             creatorId: '',
+            town: '',
             phone: '',
             errors: {}
         }
     }
 
-    onChangeUtilityTitle(e) {
-        this.setState({title: e.target.value})
-    }
-
-    onChangeUtilityDescription(e) {
-        this.setState({description: e.target.value})
-    }
-
-    onChangeUtilityPrice(e) {
-        this.setState({price: e.target.value})
-    }
-
-    onChangeUtilityCategory(e) {
-        this.setState({category: e.target.value})
-    }
-
-    onChangeUtilityPhone(e) {
-        this.setState({phone: e.target.value})
+    handleInputChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+        console.log([e.target.name] + " : " + e.target.value);
     }
 
     onSubmit(e) {
@@ -58,17 +41,17 @@ class CreateUtility extends Component {
             category: this.state.category,
             description: this.state.description,
             price: this.state.price,
+            town: this.state.town,
             creatorId: this.props.auth.user.id,
             phone: this.state.phone
 
         };
         this.props.addUtility(utilityObject, this.props.history);
 
-        this.setState({title: '', category: '', description: '', price: '', creatorId: '', phone: ''})
+        this.setState({title: '', category: '', description: '', price: '', creatorId: '', town: '', phone: ''})
     }
 
     componentDidMount() {
-        console.log(this.props);
         if (!this.props.auth.isAuthenticated) {
             this.props.history.push('/login');
         }
@@ -86,7 +69,6 @@ class CreateUtility extends Component {
 
     render() {
         const {errors} = this.state;
-        console.log(this.state);
         return (<div className="form-wrapper">
             <div className="container" style={{marginTop: '50px', width: '700px'}}>
                 <h2 style={{marginBottom: '40px'}}>Add utility</h2>
@@ -99,13 +81,13 @@ class CreateUtility extends Component {
                                 'is-invalid': errors.title
                             })}
                             name="title"
-                            onChange={this.onChangeUtilityTitle}
+                            onChange={this.handleInputChange}
                             value={this.state.title}
                         />
                         {errors.title && (<div className="invalid-feedback">{errors.title}</div>)}
                     </div>
                     <div className="form-group">
-                        <select id="category" onChange={this.onChangeUtilityCategory}
+                        <select name="category" onChange={this.handleInputChange}
                                 className={classnames('form-control form-control-lg', {
                                     'is-invalid': errors.category
                                 })}>
@@ -126,8 +108,8 @@ class CreateUtility extends Component {
                             className={classnames('form-control form-control-lg', {
                                 'is-invalid': errors.description
                             })}
-                            name="category"
-                            onChange={this.onChangeUtilityDescription}
+                            name="description"
+                            onChange={this.handleInputChange}
                             value={this.state.description}
                         />
                         {errors.description && (<div className="invalid-feedback">{errors.description}</div>)}
@@ -139,11 +121,20 @@ class CreateUtility extends Component {
                             className={classnames('form-control form-control-lg', {
                                 'is-invalid': errors.price
                             })}
-                            name="category"
-                            onChange={this.onChangeUtilityPrice}
+                            name="price"
+                            onChange={this.handleInputChange}
                             value={this.state.price}
                         />
                         {errors.price && (<div className="invalid-feedback">{errors.price}</div>)}
+                    </div>
+                    <div className="form-group">
+                        <select name="town" onChange={this.handleInputChange}
+                                className={classnames('form-control form-control-lg', {
+                                    'is-invalid': errors.town
+                                })}>
+                            {data.map(town => <option value={town.name}>{town.name}</option>)}
+                        </select>
+                        {errors.town && (<div className="invalid-feedback">{errors.town}</div>)}
                     </div>
                     <div className="form-group">
                         <input
@@ -153,7 +144,7 @@ class CreateUtility extends Component {
                                 'is-invalid': errors.phone
                             })}
                             name="phone"
-                            onChange={this.onChangeUtilityPhone}
+                            onChange={this.handleInputChange}
                             value={this.state.phone}
                         />
                         {errors.phone && (<div className="invalid-feedback">{errors.phone}</div>)}

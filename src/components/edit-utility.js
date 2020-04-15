@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -7,13 +7,8 @@ export default class EditUtility extends Component {
 
     constructor(props) {
         super(props)
-
-        this.onChangeUtilityTitle = this.onChangeUtilityTitle.bind(this);
-        this.onChangeUtilityCategory = this.onChangeUtilityCategory.bind(this);
-        this.onChangeUtilityDescription = this.onChangeUtilityDescription.bind(this);
-        this.onChangeUtilityPrice = this.onChangeUtilityPrice.bind(this);
-        this.onChangeUtilityPhone = this.onChangeUtilityPhone.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
 
         // State
         this.state = {
@@ -21,7 +16,7 @@ export default class EditUtility extends Component {
             category: '',
             description: '',
             price: '',
-            creatorId: '',
+            town: '',
             phone: ''
         }
     }
@@ -34,6 +29,7 @@ export default class EditUtility extends Component {
                     category: res.data.category,
                     description: res.data.description,
                     price: res.data.price,
+                    town: res.data.town,
                     phone: res.data.phone
                 });
             })
@@ -42,24 +38,10 @@ export default class EditUtility extends Component {
             })
     }
 
-    onChangeUtilityTitle(e) {
-        this.setState({title: e.target.value})
-    }
-
-    onChangeUtilityDescription(e) {
-        this.setState({description: e.target.value})
-    }
-
-    onChangeUtilityPrice(e) {
-        this.setState({price: e.target.value})
-    }
-
-    onChangeUtilityCategory(e) {
-        this.setState({category: e.target.value})
-    }
-
-    onChangeUtilityPhone(e) {
-        this.setState({phone: e.target.value})
+    handleInputChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     onSubmit(e) {
@@ -70,7 +52,7 @@ export default class EditUtility extends Component {
             category: this.state.category,
             description: this.state.description,
             price: this.state.price,
-            // creatorId: this.state.creatorId,
+            town: this.state.town,
             phone: this.state.phone
         };
 
@@ -92,32 +74,38 @@ export default class EditUtility extends Component {
             <Form onSubmit={this.onSubmit}>
                 <Form.Group controlId="Name">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" value={this.state.title} onChange={this.onChangeUtilityTitle}/>
+                    <Form.Control type="text" value={this.state.title} name="title" onChange={this.handleInputChange}/>
                 </Form.Group>
 
                 <Form.Group controlId="Category">
                     <Form.Label>Category</Form.Label>
-                    <Form.Control type="text" value={this.state.category} onChange={this.onChangeUtilityCategory}/>
+                    <Form.Control type="text" value={this.state.category} name="category"
+                                  onChange={this.handleInputChange}/>
                 </Form.Group>
 
                 <Form.Group controlId="Description">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control type="text" value={this.state.description}
-                                  onChange={this.onChangeUtilityDescription}/>
+                    <Form.Control type="text" name="description" value={this.state.description}
+                                  onChange={this.handleInputChange}/>
                 </Form.Group>
 
                 <Form.Group controlId="Price">
                     <Form.Label>Price</Form.Label>
-                    <Form.Control type="text" value={this.state.price} onChange={this.onChangeUtilityPrice}/>
+                    <Form.Control type="text" value={this.state.price} name="price" onChange={this.handleInputChange}/>
+                </Form.Group>
+
+                <Form.Group controlId="Town">
+                    <Form.Label>Town</Form.Label>
+                    <Form.Control type="text" value={this.state.town} name="town" onChange={this.handleInputChange}/>
                 </Form.Group>
 
                 <Form.Group controlId="Phone">
                     <Form.Label>Phone</Form.Label>
-                    <Form.Control type="phone" value={this.state.phone} onChange={this.onChangeUtilityPhone}/>
+                    <Form.Control type="phone" value={this.state.phone} name="phone" onChange={this.handleInputChange}/>
                 </Form.Group>
 
                 <Button variant="danger" size="lg" block="block" type="submit">
-                    Create Utility
+                    Update Utility
                 </Button>
             </Form>
         </div>);
