@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useEffect, useState} from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import UtilityTableRow from './UtilityTableRow';
@@ -7,53 +7,43 @@ import {getMyUtility} from "../actions/utility";
 import {withRouter} from "react-router-dom";
 
 
-class UserUtilities extends Component {
+const UserUtilities = (props) => {
+    const [utilities, setUtility] = useState([]);
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            utilities: []
-        };
-    }
-
-    componentDidMount() {
-        console.log(this.props);
+    useEffect(() => {
         axios.get('http://localhost:4000/utility/')
             .then(res => {
-                this.setState({
-                    utilities: res.data.filter(utility=>utility.creatorId === this.props.auth.user.id)
-                });
+                setUtility(res.data.filter(utility=>utility.creatorId === props.auth.user.id))
             })
             .catch((error) => {
                 console.log(error);
             })
-    }
 
-    DataTable() {
-        return this.state.utilities.map((res, i) => {
+    }, [])
+
+    const DataTable = () => {
+        return utilities.map((res, i) => {
             return <UtilityTableRow obj={res} key={i}/>;
         });
     }
 
 
-    render() {
-        return (<div className="table-wrapper">
-            <Table striped bordered hover>
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Phone</th>
-                </tr>
-                </thead>
-                <tbody>
-                {this.DataTable()}
-                </tbody>
-            </Table>
-        </div>);
-    }
+    return (<div className="table-wrapper">
+        <Table striped bordered hover>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            {DataTable()}
+            </tbody>
+        </Table>
+    </div>);
 }
 
 const mapStateToProps = state => ({

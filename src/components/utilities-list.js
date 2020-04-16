@@ -12,14 +12,30 @@ class UtilitytList extends Component {
         super(props)
         this.state = {
             utilities: [],
-            choice: ''
+            choice: '',
+            lat: null,
+            long: null
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.getLocation = this.getLocation.bind(this);
     }
 
     componentDidMount() {
         this.fetchData();
+    }
+
+    getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.getCoordinates);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    getCoordinates(position) {
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
     }
 
     fetchData = () => {
@@ -31,13 +47,11 @@ class UtilitytList extends Component {
                             utilities: res.data
                         });
                     } else {
-                        console.log('choice');
                         this.setState({
                             utilities: res.data.filter(item => item.category === this.state.choice)
                         });
                     }
                 } else {
-                    console.log('nqma choice');
                     this.setState({
                         utilities: res.data
                     });
@@ -63,7 +77,6 @@ class UtilitytList extends Component {
     }
 
     render() {
-        console.log(this.state.choice);
         return (
             <>
                 <div className="form-group">
@@ -77,6 +90,9 @@ class UtilitytList extends Component {
                         <option value="house repair">House repair</option>
                     </select>
                 </div>
+                <button onClick={this.getLocation}>get logation</button>
+                <p>{this.state.lat}</p>
+                <p>{this.state.long}</p>
                 <div className="table-wrapper">
 
                     <Table striped bordered hover>
