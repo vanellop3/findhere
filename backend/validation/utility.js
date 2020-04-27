@@ -41,7 +41,7 @@ module.exports = function validateUtility(data) {
     //     errors.phone = 'Please add a valid phone number';
     // }
 
-    // if (Validator.isNumeric(data.phone)) {
+    // if (Validator.isInt(data.phone)) {
     //     errors.phone = 'Please add a valid phone number';
     // }
 

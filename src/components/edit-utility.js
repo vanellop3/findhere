@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import TownList from '../components/TownList';
 
 export default class EditUtility extends Component {
 
@@ -94,10 +95,11 @@ export default class EditUtility extends Component {
                     <Form.Control type="text" value={this.state.price} name="price" onChange={this.handleInputChange}/>
                 </Form.Group>
 
-                <Form.Group controlId="Town">
-                    <Form.Label>Town</Form.Label>
-                    <Form.Control type="text" value={this.state.town} name="town" onChange={this.handleInputChange}/>
-                </Form.Group>
+                <div className="form-group" controlId="town">
+                        <select name="town"  onChange={this.handleInputChange}>
+                                <TownList/>
+                        </select>
+                    </div>
 
                 <Form.Group controlId="Phone">
                     <Form.Label>Phone</Form.Label>

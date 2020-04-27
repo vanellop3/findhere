@@ -24,12 +24,6 @@ let utilitySchema = new Schema({
     town: {
         type: String
     },
-    townLng: {
-        type: Number
-    },
-    townLat: {
-        type: Number
-    },
     phone: {
         type: String
     }

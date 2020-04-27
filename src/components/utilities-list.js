@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import UtilityTableRow from './UtilityTableRow';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import classnames from "classnames";
 
 
@@ -13,8 +13,7 @@ class UtilitytList extends Component {
         this.state = {
             utilities: [],
             choice: '',
-            lat: null,
-            long: null
+            cityChoice: ''
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -23,38 +22,62 @@ class UtilitytList extends Component {
 
     componentDidMount() {
         this.fetchData();
+
     }
 
     getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.getCoordinates);
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
+        axios.get("https://ipinfo.io?token=35797a9aa82ded")
+            .then(res => {
+                console.log(res.data.city);
+                this.setState({
+                    cityChoice: res.data.city
+                })
+            })
+
+        //         this.setState({
+        //     cityChoice: 'Gabrovo'
+        // })
+        setTimeout(function () { this.fetchData(); }.bind(this), 1200);
+
     }
 
-    getCoordinates(position) {
-        console.log(position.coords.latitude);
-        console.log(position.coords.longitude);
-    }
+    // getCoordinates(position) {
+    //     console.log(position.coords.latitude);setTimeout(function() {
+
+    //     console.log(position.coords.longitude);
+    // }
 
     fetchData = () => {
         axios.get('http://localhost:4000/utility/')
             .then(res => {
                 if (this.state.choice != '') {
+                    console.log('purviq if');
                     if (this.state.choice === 'all') {
                         this.setState({
                             utilities: res.data
                         });
+                        this.state.choice = '';
                     } else {
                         this.setState({
                             utilities: res.data.filter(item => item.category === this.state.choice)
                         });
+                        this.state.choice = '';
                     }
-                } else {
+                }
+                else if (this.state.cityChoice != '') {
+                    console.log('vtoriq if');
+                    this.setState({
+                        utilities: res.data.filter(item => item.town === this.state.cityChoice)
+                    });
+                    this.state.cityChoice = '';
+                }
+                else {
+                    console.log('elsa');
                     this.setState({
                         utilities: res.data
                     });
+                    // this.state.choice='';
+                    // this.state.cityChoice = '';
                 }
             })
             .catch((error) => {
@@ -64,7 +87,7 @@ class UtilitytList extends Component {
 
     DataTable() {
         return this.state.utilities.map((res, i) => {
-            return <UtilityTableRow obj={res} key={i}/>;
+            return <UtilityTableRow obj={res} key={i} />;
         });
     }
 
@@ -95,21 +118,21 @@ class UtilitytList extends Component {
                 <p>{this.state.long}</p>
                 <div className="table-wrapper">
 
-                    <Table striped bordered hover>
-                        <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Phone</th>
-                            <th>Town</th>
-                        </tr>
+                    {/* <Table striped bordered hover> */}
+                        {/* <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Phone</th>
+                                <th>Town</th>
+                            </tr>
                         </thead>
-                        <tbody>
-                        {this.DataTable()}
-                        </tbody>
-                    </Table>
+                        <tbody> */}
+                            {this.DataTable()}
+                        {/* </tbody> */}
+                    {/* </Table> */}
                 </div>
             </>);
 
