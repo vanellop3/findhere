@@ -17,6 +17,7 @@ import {setCurrentUser, logoutUser} from './actions/authentication';
 import Navbar from "./components/Navbar";
 import UserUtilities from "./components/UserUtilities";
 import EditProfile from "./components/edit-profile";
+import LatestUtilities from "./components/LatestUtilities";
 
 console.log(localStorage.jwtToken);
 
@@ -46,6 +47,7 @@ function App() {
                     </Link>
                     <div>
                         ijjfoejofjoefj
+                        <LatestUtilities/>
                     </div>
 
                     <div className="wrapper">
