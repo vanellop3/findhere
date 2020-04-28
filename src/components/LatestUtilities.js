@@ -2,12 +2,9 @@ import React, {Component, useEffect, useState} from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import UtilityTableRow from './UtilityTableRow';
-import {connect} from "react-redux";
-import {getMyUtility} from "../actions/utility";
-import {withRouter} from "react-router-dom";
 
 
-const UserUtilities = (props) => {
+const UserUtilities = () => {
     const [utilities, setUtility] = useState([]);
 
     useEffect(() => {
@@ -48,8 +45,4 @@ const UserUtilities = (props) => {
     </div>);
 }
 
-const mapStateToProps = state => ({
-    auth: state.auth,
-});
-
-export default connect(mapStateToProps)(UserUtilities);
+export default UserUtilities;
