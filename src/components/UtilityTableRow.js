@@ -27,6 +27,19 @@ class StudentTableRow extends Component {
         }
     }
 
+    categoryImg() {
+          switch(this.props.obj.category){
+              case 'animal services': return <div> <img src={require('../img/key.pbg')}/></div>;
+          case 'babysitters': return <div> babysitters</div>;
+          case 'car repair': return <div> car repair</div>;
+          case 'cleaning': return <div> animal</div>;
+          case 'gardening services': return <div> animal</div>;
+          case 'house repair': return <div> animal</div>;
+          default: return <div> animal</div>
+      }
+
+    }
+
     render() {
         console.log(this.props.user);
         const isAdmin = this.props.auth.user.isAdmin;
@@ -37,6 +50,7 @@ class StudentTableRow extends Component {
                 <Card>
   <Card.Header as="h5">{this.props.obj.title}</Card.Header>
   <Card.Body>
+      {this.categoryImg()}
     <Card.Title>{this.props.obj.category}</Card.Title>
     <Card.Text>
       With supporting text below as a natural lead-in to additional content.

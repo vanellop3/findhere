@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "./App.css";
-
+import '../src/stylesheets/styles.scss';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 import CreateUtility from "./components/create-utility";
@@ -18,6 +17,7 @@ import Navbar from "./components/Navbar";
 import UserUtilities from "./components/UserUtilities";
 import EditProfile from "./components/edit-profile";
 import LatestUtilities from "./components/LatestUtilities";
+
 
 console.log(localStorage.jwtToken);
 
