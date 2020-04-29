@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import UtilityTableRow from './UtilityTableRow';
+import {DropdownButton, Dropdown} from 'react-bootstrap';
+
 import { connect } from "react-redux";
 import classnames from "classnames";
 
@@ -113,9 +115,14 @@ class UtilitytList extends Component {
                         <option value="house repair">House repair</option>
                     </select>
                 </div>
-                <button onClick={this.getLocation}>get logation</button>
-                <p>{this.state.lat}</p>
-                <p>{this.state.long}</p>
+                <button onClick={this.getLocation}>get location</button>
+
+                {/*<DropdownButton id="dropdown-item-button" name="category" title="Categories" onChange={this.handleInputChange}>*/}
+                {/*    <Dropdown.Item as="button" value="all">All</Dropdown.Item>*/}
+                {/*    <Dropdown.Item as="button" value="animal services">Animal services</Dropdown.Item>*/}
+                {/*    <Dropdown.Item as="button">Something else</Dropdown.Item>*/}
+                {/*</DropdownButton>*/}
+
                 <div className="table-wrapper">
 
                     {/* <Table striped bordered hover> */}

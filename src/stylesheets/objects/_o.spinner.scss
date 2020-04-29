@@ -1,0 +1,14 @@
+.loader {
+  display: flex;
+  margin-top: $basic-space*10;
+  margin-right: auto;
+  margin-left: auto;
+  border: 16px solid $main-pink;
+  border-radius: 50%;
+  border-top: 16px solid $main-blue;
+  border-right: 16px solid $main-green;
+  border-bottom: 16px solid $main-yellow;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}

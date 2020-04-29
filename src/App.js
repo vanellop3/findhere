@@ -46,7 +46,7 @@ function App() {
                         Utility List
                     </Link>
                     <div>
-                        {/* <LatestUtilities/> */}
+                         <LatestUtilities/>
                     </div>
 
                     <div className="wrapper">
