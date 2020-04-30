@@ -18,7 +18,6 @@ import UserUtilities from "./components/UserUtilities";
 import EditProfile from "./components/edit-profile";
 import LatestUtilities from "./components/LatestUtilities";
 
-
 console.log(localStorage.jwtToken);
 
 if (localStorage.jwtToken) {
@@ -42,16 +41,17 @@ function App() {
                     {/*<Link to={"/create-utility"} className="nav-link">*/}
                     {/*    Create Student*/}
                     {/*</Link>*/}
-                    <Link to={"/my-utilities"} className="nav-link">
+                    {/* <Link to={"/my-utilities"} className="nav-link">
                         Utility List
-                    </Link>
-                    <div>
-                         <LatestUtilities/>
-                    </div>
+                    </Link> */}
+                    {/* <div> */}
+                            {/* <LatestUtilities/> */}
+                    {/* </div> */}
 
                     <div className="wrapper">
                         <Switch>
                             {/*<Route exact path='/' component={CreateUtility}/>*/}
+                            <Route exact path='/'  component={LatestUtilities}/>
                             <Route path="/create-utility" component={CreateUtility}/>
                             <Route path="/edit-utility/:id" component={EditUtility}/>
                             <Route path="/edit-profile/:id" component={EditProfile}/>
