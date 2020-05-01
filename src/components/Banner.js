@@ -4,7 +4,7 @@ const Banner = () => {
 
   return (
     <>
-<img class="banner" src={require('../img/back.jpg')} />
+<img class="banner" />
 
 </>
   );

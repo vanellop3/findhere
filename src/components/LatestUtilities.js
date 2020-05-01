@@ -1,8 +1,8 @@
 import React, { Component, useEffect, useState } from "react";
 import axios from 'axios';
-import Table from 'react-bootstrap/Table';
 import CardItem from './CardItem';
 import Banner from "./Banner";
+import UtilitytList from "./utilities-list";
 import Collapse from 'react-bootstrap/Collapse';
 
 const UserUtilities = () => {
@@ -28,12 +28,13 @@ const UserUtilities = () => {
     }
 
 
-    return (<div className="table-wrapper">
-        <Banner />
-        <div className="utility-wrap">
-            {DataTable()}
-        </div>
-    </div>);
+    return (
+        <>
+            <div className="utility-wrap">
+                {DataTable()}
+            </div>
+        </>
+    );
 }
 
 export default UserUtilities;

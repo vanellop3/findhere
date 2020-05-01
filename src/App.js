@@ -16,7 +16,7 @@ import {setCurrentUser, logoutUser} from './actions/authentication';
 import Navbar from "./components/Navbar";
 import UserUtilities from "./components/UserUtilities";
 import EditProfile from "./components/edit-profile";
-import LatestUtilities from "./components/LatestUtilities";
+import Main from "./components/Main";
 
 console.log(localStorage.jwtToken);
 
@@ -51,7 +51,7 @@ function App() {
                     <div className="wrapper">
                         <Switch>
                             {/*<Route exact path='/' component={CreateUtility}/>*/}
-                            <Route exact path='/'  component={LatestUtilities}/>
+                            <Route exact path='/'  component={Main}/>
                             <Route path="/create-utility" component={CreateUtility}/>
                             <Route path="/edit-utility/:id" component={EditUtility}/>
                             <Route path="/edit-profile/:id" component={EditProfile}/>

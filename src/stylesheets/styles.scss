@@ -9,11 +9,13 @@
 @import "objects/o.form";
 @import "components/component.form-container";
 @import "components/component.header";
+@import "components/component.card";
+@import "components/components.info";
 
 body {
-  //background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url("../img/background.jpg");
-  background: url("../img/bg.jpg");
-  background-size: cover;
+  background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5));
+  // background: url("../img/bg.jpg");
+  // background-size: cover;
   font-family: 'MarkWeb';
 
   //filter: blur(8px);

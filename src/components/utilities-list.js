@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Table';
 import UtilityTableRow from './UtilityTableRow';
-import {DropdownButton, Dropdown} from 'react-bootstrap';
-
-import { connect } from "react-redux";
-import classnames from "classnames";
+import CardItem from "./CardItem";
 
 
 class UtilitytList extends Component {
@@ -43,11 +40,6 @@ class UtilitytList extends Component {
 
     }
 
-    // getCoordinates(position) {
-    //     console.log(position.coords.latitude);setTimeout(function() {
-
-    //     console.log(position.coords.longitude);
-    // }
 
     fetchData = () => {
         axios.get('http://localhost:4000/utility/')
@@ -89,7 +81,7 @@ class UtilitytList extends Component {
 
     DataTable() {
         return this.state.utilities.map((res, i) => {
-            return <UtilityTableRow obj={res} key={i} />;
+            return <CardItem obj={res} key={i} />;
         });
     }
 
@@ -100,6 +92,7 @@ class UtilitytList extends Component {
 
         this.fetchData();
     }
+    
 
     render() {
         return (
@@ -115,31 +108,10 @@ class UtilitytList extends Component {
                         <option value="house repair">House repair</option>
                     </select>
                 </div>
-                <button onClick={this.getLocation}>get location</button>
+                <Button variant="success" onClick={this.getLocation}>get location </Button>
 
-                {/*<DropdownButton id="dropdown-item-button" name="category" title="Categories" onChange={this.handleInputChange}>*/}
-                {/*    <Dropdown.Item as="button" value="all">All</Dropdown.Item>*/}
-                {/*    <Dropdown.Item as="button" value="animal services">Animal services</Dropdown.Item>*/}
-                {/*    <Dropdown.Item as="button">Something else</Dropdown.Item>*/}
-                {/*</DropdownButton>*/}
-
-                <div className="table-wrapper">
-
-                    {/* <Table striped bordered hover> */}
-                        {/* <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Category</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Phone</th>
-                                <th>Town</th>
-                            </tr>
-                        </thead>
-                        <tbody> */}
-                            {this.DataTable()}
-                        {/* </tbody> */}
-                    {/* </Table> */}
+                <div className="utility-wrap--search">
+                    {this.DataTable()}
                 </div>
             </>);
 
