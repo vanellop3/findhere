@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import TownList from '../components/TownList';
+import CategoryList from '../components/CategoryList';
 
 export default class EditUtility extends Component {
 
@@ -80,8 +81,7 @@ export default class EditUtility extends Component {
 
                 <Form.Group controlId="Category">
                     <Form.Label>Category</Form.Label>
-                    <Form.Control type="text" value={this.state.category} name="category"
-                                  onChange={this.handleInputChange}/>
+                    <CategoryList handleInputChange={this.handleInputChange} />
                 </Form.Group>
 
                 <Form.Group controlId="Description">

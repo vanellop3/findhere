@@ -33,8 +33,9 @@ const Main = () => {
   return (
   <div className="">
     <Banner />
-    <Info/>
+    <Info title="Here you can find" description="latest utilities" />
     <LatestUtilities/>
+    <Info title="Looking for utility" description="This is the right place" />
     <UtilitytList/>
 
   </div>);

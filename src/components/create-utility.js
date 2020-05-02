@@ -1,11 +1,12 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import classnames from 'classnames';
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {addUtility} from '../actions/utility';
-import {withRouter} from "react-router-dom";
+import { connect } from "react-redux";
+import { addUtility } from '../actions/utility';
+import { withRouter } from "react-router-dom";
 import data from '../towns.json';
 import TownList from '../components/TownList';
+import CategoryList from '../components/CategoryList';
 
 class CreateUtility extends Component {
 
@@ -76,7 +77,7 @@ class CreateUtility extends Component {
         };
         this.props.addUtility(utilityObject, this.props.history);
         console.log(utilityObject);
-        this.setState({title: '', category: '', description: '', price: '', creatorId: '', town: '',townLng:'',townLat:'', phone: ''})
+        this.setState({ title: '', category: '', description: '', price: '', creatorId: '', town: '', townLng: '', townLat: '', phone: '' })
     }
 
     componentDidMount() {
@@ -96,10 +97,10 @@ class CreateUtility extends Component {
     }
 
     render() {
-        const {errors} = this.state;
+        const { errors } = this.state;
         return (<div className="form-wrapper">
-            <div className="container" style={{marginTop: '50px', width: '700px'}}>
-                <h2 style={{marginBottom: '40px'}}>Add utility</h2>
+            <div className="container" style={{ marginTop: '50px', width: '700px' }}>
+                <h2 style={{ marginBottom: '40px' }}>Add utility</h2>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <input
@@ -115,7 +116,7 @@ class CreateUtility extends Component {
                         {errors.title && (<div className="invalid-feedback">{errors.title}</div>)}
                     </div>
                     <div className="form-group">
-                        <select name="category" onChange={this.handleInputChange}
+                        {/* <select name="category" onChange={this.handleInputChange}
                                 className={classnames('form-control form-control-lg', {
                                     'is-invalid': errors.category
                                 })}>
@@ -126,7 +127,8 @@ class CreateUtility extends Component {
                             <option value="cleaning">Cleaning</option>
                             <option value="gardening services">Gardening services</option>
                             <option value="house repair">House repair</option>
-                        </select>
+                        </select> */}
+                        <CategoryList handleInputChange={this.handleInputChange} />
                         {errors.category && (<div className="invalid-feedback">{errors.category}</div>)}
                     </div>
                     <div className="form-group">
@@ -156,16 +158,16 @@ class CreateUtility extends Component {
                         {errors.price && (<div className="invalid-feedback">{errors.price}</div>)}
                     </div>
                     <div className="form-group">
-                        <select name="town"  onChange={this.handleInputChange}
-                                className={classnames('form-control form-control-lg', {
-                                    'is-invalid': errors.town
-                                })}>
-                                <TownList/>
+                        <select name="town" onChange={this.handleInputChange}
+                            className={classnames('form-control form-control-lg', {
+                                'is-invalid': errors.town
+                            })}>
+                            <TownList />
                         </select>
                         {errors.town && (<div className="invalid-feedback">{errors.town}</div>)}
                     </div>
                     <div className="form-group">
-                    <span>+359</span>
+                        <span>+359</span>
                         <input
                             type="text"
                             placeholder="Phone"
@@ -199,4 +201,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 });
 
-export default connect(mapStateToProps, {addUtility})(withRouter(CreateUtility))
+export default connect(mapStateToProps, { addUtility })(withRouter(CreateUtility))

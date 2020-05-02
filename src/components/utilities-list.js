@@ -3,6 +3,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Table';
 import UtilityTableRow from './UtilityTableRow';
 import CardItem from "./CardItem";
+import CategoryList from "./CategoryList";
 
 
 class UtilitytList extends Component {
@@ -12,16 +13,26 @@ class UtilitytList extends Component {
         this.state = {
             utilities: [],
             choice: '',
-            cityChoice: ''
+            cityChoice: '',
+            currentPage: 1,
+            todosPerPage: 2
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.getLocation = this.getLocation.bind(this);
+        this.handlePageClick = this.handlePageClick.bind(this);
+
     }
 
     componentDidMount() {
         this.fetchData();
+    }
 
+    handlePageClick(event) {
+        console.log(event.target.id);
+        this.setState({
+            currentPage: Number(event.target.id)
+        });
     }
 
     getLocation() {
@@ -32,12 +43,7 @@ class UtilitytList extends Component {
                     cityChoice: res.data.city
                 })
             })
-
-        //         this.setState({
-        //     cityChoice: 'Gabrovo'
-        // })
         setTimeout(function () { this.fetchData(); }.bind(this), 1200);
-
     }
 
 
@@ -70,19 +76,11 @@ class UtilitytList extends Component {
                     this.setState({
                         utilities: res.data
                     });
-                    // this.state.choice='';
-                    // this.state.cityChoice = '';
                 }
             })
             .catch((error) => {
                 console.log(error);
             })
-    }
-
-    DataTable() {
-        return this.state.utilities.map((res, i) => {
-            return <CardItem obj={res} key={i} />;
-        });
     }
 
     handleInputChange(e) {
@@ -92,12 +90,41 @@ class UtilitytList extends Component {
 
         this.fetchData();
     }
-    
+
 
     render() {
+        const { utilities, currentPage, todosPerPage } = this.state;
+
+        console.log(currentPage);
+        const indexOfLastTodo = currentPage * todosPerPage;
+        const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+        const currentTodos = utilities.slice(indexOfFirstTodo, indexOfLastTodo);
+        const renderTodos = currentTodos.map((res, index) => {
+            return <CardItem obj={res} key={index} />;
+        });
+
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(utilities.length / todosPerPage); i++) {
+            pageNumbers.push(i);
+        }
+
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <li
+                    key={number}
+                    id={number}
+                    onClick={this.handlePageClick}
+                    className={currentPage === number ? 'active' : ''}
+                >
+                    {number}
+                </li>
+            );
+        });
+
         return (
-            <>
-                <div className="form-group">
+            <div>
+
+                {/* <div className="category-list">
                     <select name="category" onChange={this.handleInputChange}>
                         <option value="all">ALL</option>
                         <option value="animal services">Animal services</option>
@@ -107,13 +134,18 @@ class UtilitytList extends Component {
                         <option value="gardening services">Gardening services</option>
                         <option value="house repair">House repair</option>
                     </select>
-                </div>
-                <Button variant="success" onClick={this.getLocation}>get location </Button>
-
+                </div> */}
+                <CategoryList handleInputChange={this.handleInputChange} />
+                <button className="btn--primary" onClick={this.getLocation}>get location </button>
                 <div className="utility-wrap--search">
-                    {this.DataTable()}
+                    {renderTodos}
                 </div>
-            </>);
+                <ul className="page-numbers">
+                    « {renderPageNumbers} »
+                </ul>
+            </div>
+        );
+
 
     }
 }

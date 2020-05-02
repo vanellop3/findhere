@@ -1,0 +1,21 @@
+.page-numbers {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+
+  li {
+    margin-right: $basic-space * 2;
+    cursor: pointer;
+
+    &:first-child {
+      margin-left: $basic-space * 2;
+    }
+
+    &.active{
+      text-decoration: underline;
+      color:$dark-blue;
+    }
+  }
+
+
+}
