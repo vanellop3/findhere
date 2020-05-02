@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -63,8 +63,8 @@ export default class EditUtility extends Component {
                 console.log(res.data)
                 console.log('Utility successfully updated')
             }).catch((error) => {
-            console.log(error)
-        })
+                console.log(error)
+            })
 
         // Redirect to Student List
         this.props.history.push('/utility-list')
@@ -73,43 +73,62 @@ export default class EditUtility extends Component {
 
     render() {
         return (<div className="form-wrapper">
-            <Form onSubmit={this.onSubmit}>
-                <Form.Group controlId="Name">
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" value={this.state.title} name="title" onChange={this.handleInputChange}/>
-                </Form.Group>
 
-                <Form.Group controlId="Category">
-                    <Form.Label>Category</Form.Label>
-                    <CategoryList handleInputChange={this.handleInputChange} />
-                </Form.Group>
-
-                <Form.Group controlId="Description">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control type="text" name="description" value={this.state.description}
-                                  onChange={this.handleInputChange}/>
-                </Form.Group>
-
-                <Form.Group controlId="Price">
-                    <Form.Label>Price</Form.Label>
-                    <Form.Control type="text" value={this.state.price} name="price" onChange={this.handleInputChange}/>
-                </Form.Group>
-
-                <div className="form-group" controlId="town">
-                        <select name="town"  onChange={this.handleInputChange}>
-                                <TownList/>
+            <div className="container" style={{ marginTop: '50px', width: '700px' }}>
+                <h2 style={{ marginBottom: '40px' }}>Edit utility</h2>
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            name="title"
+                            className={'form-control form-control-lg'}
+                            onChange={this.handleInputChange}
+                            value={this.state.title}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <CategoryList handleInputChange={this.handleInputChange} />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            name="description"
+                            className={'form-control form-control-lg'}
+                            onChange={this.handleInputChange}
+                            value={this.state.description}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            name="price"
+                            className={'form-control form-control-lg'}
+                            onChange={this.handleInputChange}
+                            value={this.state.price}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <select name="town" onChange={this.handleInputChange}>
+                            <TownList />
                         </select>
                     </div>
-
-                <Form.Group controlId="Phone">
-                    <Form.Label>Phone</Form.Label>
-                    <Form.Control type="phone" value={this.state.phone} name="phone" onChange={this.handleInputChange}/>
-                </Form.Group>
-
-                <Button variant="danger" size="lg" block="block" type="submit">
-                    Update Utility
-                </Button>
-            </Form>
-        </div>);
+                    <div className="form-group">
+                        <span>+359</span>
+                        <input
+                            type="text"
+                            name="phone"
+                            className={'form-control form-control-lg'}
+                            onChange={this.handleInputChange}
+                            value={this.state.phone}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary">
+                            Edit Utility
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div >);
     }
 }
