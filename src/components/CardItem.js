@@ -33,7 +33,7 @@ const CardItem = (props) => {
         <Card.Title>{props.obj.category}</Card.Title>
         <Card.Text>
           Price: {props.obj.price}$ </Card.Text>
-        <Button onClick={toggleExpanded} variant="primary">More info</Button>
+        <button onClick={toggleExpanded} className="btn--primary">More info</button>
         <div className={`${expanded ? 'expanded-card' : 'normal-card'}`}>
           <Card.Text> {props.obj.title}</Card.Text>
           <Card.Text> Description: {props.obj.description}</Card.Text>

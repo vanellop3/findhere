@@ -29,6 +29,7 @@ module.exports = function validateUtility(data) {
         errors.price = 'Price is required';
     }
 
+
     // if (Validator.isNumeric(data.price)) {
     //     errors.price = 'Price is required';
     // }

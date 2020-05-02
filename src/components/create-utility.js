@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addUtility } from '../actions/utility';
 import { withRouter } from "react-router-dom";
-import data from '../towns.json';
 import TownList from '../components/TownList';
 import CategoryList from '../components/CategoryList';
 
@@ -15,7 +14,6 @@ class CreateUtility extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
 
-        // Setting up state
         this.state = {
             title: '',
             category: '',
@@ -34,31 +32,6 @@ class CreateUtility extends Component {
         })
         console.log([e.target.name] + " : " + e.target.value);
     }
-
-    // handleTownChange(e) {
-    //     var input = e.target.value;
-    //     var arr = input.split(' ');
-    //     console.log(arr.length);
-    //     if (arr.length === 3) {
-    //         console.log(arr[0], arr[1], arr[1]);
-    //         this.setState({
-    //             town: arr[0],
-    //             townLng: arr[1],
-    //             townLat: arr[2]
-    //         })
-    //         arr = [];
-    //     } else if (arr.length = 4) {
-    //         this.setState({
-    //             town: arr[0] + arr[1],
-    //             townLng: arr[2],
-    //             townLat: arr[3]
-    //         })
-    //         arr = [];
-    //     } else {
-    //         alert('Wrong input');
-    //     }
-    //     console.log([e.target.name] + " : " + e.target.value);
-    // }
 
     onSubmit(e) {
         e.preventDefault()
@@ -116,18 +89,6 @@ class CreateUtility extends Component {
                         {errors.title && (<div className="invalid-feedback">{errors.title}</div>)}
                     </div>
                     <div className="form-group">
-                        {/* <select name="category" onChange={this.handleInputChange}
-                                className={classnames('form-control form-control-lg', {
-                                    'is-invalid': errors.category
-                                })}>
-                            <option disabled selected>Choose category</option>
-                            <option value="animal services">Animal services</option>
-                            <option value="babysitters">Babysitters</option>
-                            <option value="car repair">Car repair</option>
-                            <option value="cleaning">Cleaning</option>
-                            <option value="gardening services">Gardening services</option>
-                            <option value="house repair">House repair</option>
-                        </select> */}
                         <CategoryList handleInputChange={this.handleInputChange} />
                         {errors.category && (<div className="invalid-feedback">{errors.category}</div>)}
                     </div>
@@ -146,7 +107,7 @@ class CreateUtility extends Component {
                     </div>
                     <div className="form-group">
                         <input
-                            type="text"
+                            type="number"
                             placeholder="Price"
                             className={classnames('form-control form-control-lg', {
                                 'is-invalid': errors.price
@@ -167,9 +128,8 @@ class CreateUtility extends Component {
                         {errors.town && (<div className="invalid-feedback">{errors.town}</div>)}
                     </div>
                     <div className="form-group">
-                        <span>+359</span>
                         <input
-                            type="text"
+                            type="number"
                             placeholder="Phone"
                             className={classnames('form-control form-control-lg', {
                                 'is-invalid': errors.phone
@@ -181,7 +141,7 @@ class CreateUtility extends Component {
                         {errors.phone && (<div className="invalid-feedback">{errors.phone}</div>)}
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn--primary">
                             ADD Utility
                         </button>
                     </div>

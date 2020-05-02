@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import TownList from '../components/TownList';
 import CategoryList from '../components/CategoryList';
@@ -100,7 +98,7 @@ export default class EditUtility extends Component {
                     </div>
                     <div className="form-group">
                         <input
-                            type="text"
+                            type="number"
                             name="price"
                             className={'form-control form-control-lg'}
                             onChange={this.handleInputChange}
@@ -113,9 +111,8 @@ export default class EditUtility extends Component {
                         </select>
                     </div>
                     <div className="form-group">
-                        <span>+359</span>
                         <input
-                            type="text"
+                            type="number"
                             name="phone"
                             className={'form-control form-control-lg'}
                             onChange={this.handleInputChange}
@@ -123,7 +120,10 @@ export default class EditUtility extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">
+                        <span>* Keep in mind that this won't change creation date!</span>
+                    </div>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn--primary">
                             Edit Utility
                         </button>
                     </div>

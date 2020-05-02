@@ -16,6 +16,8 @@
 }
 
 .btn--primary {
+  margin-top: $basic-space *4;
+  margin-bottom: $basic-space *4;
   padding: $basic-space *4;
   border:5px solid $main-dark;
   border-radius: 45%;

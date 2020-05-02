@@ -38,15 +38,6 @@ function App() {
             <Router>
                 <div className="App">
                     <Navbar/>
-                    {/*<Link to={"/create-utility"} className="nav-link">*/}
-                    {/*    Create Student*/}
-                    {/*</Link>*/}
-                    {/* <Link to={"/my-utilities"} className="nav-link">
-                        Utility List
-                    </Link> */}
-                    {/* <div> */}
-                            {/* <LatestUtilities/> */}
-                    {/* </div> */}
 
                     <div className="wrapper">
                         <Switch>

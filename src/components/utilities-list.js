@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import Button from 'react-bootstrap/Table';
-import UtilityTableRow from './UtilityTableRow';
-import CardItem from "./CardItem";
 import CategoryList from "./CategoryList";
+import Pagination from "./Pagination";
 
 
 class UtilitytList extends Component {
@@ -13,26 +11,16 @@ class UtilitytList extends Component {
         this.state = {
             utilities: [],
             choice: '',
-            cityChoice: '',
-            currentPage: 1,
-            todosPerPage: 2
+            cityChoice: ''
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.getLocation = this.getLocation.bind(this);
-        this.handlePageClick = this.handlePageClick.bind(this);
 
     }
 
     componentDidMount() {
         this.fetchData();
-    }
-
-    handlePageClick(event) {
-        console.log(event.target.id);
-        this.setState({
-            currentPage: Number(event.target.id)
-        });
     }
 
     getLocation() {
@@ -93,60 +81,17 @@ class UtilitytList extends Component {
 
 
     render() {
-        const { utilities, currentPage, todosPerPage } = this.state;
-
-        console.log(currentPage);
-        const indexOfLastTodo = currentPage * todosPerPage;
-        const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-        const currentTodos = utilities.slice(indexOfFirstTodo, indexOfLastTodo);
-        const renderTodos = currentTodos.map((res, index) => {
-            return <CardItem obj={res} key={index} />;
-        });
-
-        const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(utilities.length / todosPerPage); i++) {
-            pageNumbers.push(i);
-        }
-
-        const renderPageNumbers = pageNumbers.map(number => {
-            return (
-                <li
-                    key={number}
-                    id={number}
-                    onClick={this.handlePageClick}
-                    className={currentPage === number ? 'active' : ''}
-                >
-                    {number}
-                </li>
-            );
-        });
 
         return (
             <div>
-
-                {/* <div className="category-list">
-                    <select name="category" onChange={this.handleInputChange}>
-                        <option value="all">ALL</option>
-                        <option value="animal services">Animal services</option>
-                        <option value="babysitters">Babysitters</option>
-                        <option value="car repair">Car repair</option>
-                        <option value="cleaning">Cleaning</option>
-                        <option value="gardening services">Gardening services</option>
-                        <option value="house repair">House repair</option>
-                    </select>
-                </div> */}
-                <CategoryList handleInputChange={this.handleInputChange} />
-                <button className="btn--primary" onClick={this.getLocation}>get location </button>
-                <div className="utility-wrap--search">
-                    {renderTodos}
+                <div className="centered--column">
+                    <CategoryList handleInputChange={this.handleInputChange} />
+                    <button className="btn--primary" onClick={this.getLocation}>get location </button>
                 </div>
-                <ul className="page-numbers">
-                    « {renderPageNumbers} »
-                </ul>
+                <Pagination start={1} perPage={3} utilities={this.state.utilities} />
+
             </div>
         );
-
-
     }
 }
 
