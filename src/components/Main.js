@@ -1,6 +1,4 @@
 import React, { Component, useEffect, useState } from "react";
-import axios from 'axios';
-import CardItem from './CardItem';
 import Banner from "./Banner";
 import UtilitytList from "./utilities-list";
 import Collapse from 'react-bootstrap/Collapse';
@@ -16,6 +14,7 @@ const Main = () => {
     <LatestUtilities/>
     <Info title="Looking for utility" description="This is the right place" />
     <UtilitytList/>
+    <Info title="Wanna share you knowledge and earn money" button="Register now" />
 
   </div>);
 }

@@ -1,13 +1,20 @@
 .utility-wrap {
-  // position: relative;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: $basic-space *10;
+
+  @include responsive($desktop) {
+    flex-direction: row;
+    margin-bottom: $basic-space *30;
+  }
 
   .card {
     position: relative;
-    width: 300px;
-    // height:400px ;
     margin-left: 30px;
+    width: 300px;
+    border:3px solid $pink;
+    // height:400px ;
 
     .card__img {
       position: absolute;
@@ -20,9 +27,14 @@
   }
 }
 
-.utility-wrap--search{
+.utility-wrap--search {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+
+  @include responsive($desktop) {
+    flex-direction: row;
+  }
 }
 
 .expanded-card {
