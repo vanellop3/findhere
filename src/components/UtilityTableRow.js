@@ -1,4 +1,3 @@
-  
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
@@ -20,12 +19,12 @@ class StudentTableRow extends Component {
                     alert('successfully deleted');
                     window.location.reload();
                 }).catch((error) => {
-                    console.log(error)
-                })
-        } 
+                console.log(error)
+            })
+        }
     }
+
     render() {
-        console.log(this.props.user);
         const isAdmin = this.props.auth.user.isAdmin;
         const logged = this.props.auth.user.id;
         if (isAdmin === true || logged === this.props.obj.creatorId) {
@@ -37,8 +36,6 @@ class StudentTableRow extends Component {
                     <td>{this.props.obj.price}</td>
                     <td>{this.props.obj.phone}</td>
                     <td>{this.props.obj.town}</td>
-                    <td>{this.props.obj.townLng}</td>
-                    <td>{this.props.obj.townLat}</td>
                     <td>
                         <Link className="edit-link" to={"/edit-utility/" + this.props.obj._id}>
                             Edit
@@ -56,8 +53,6 @@ class StudentTableRow extends Component {
                     <td>{this.props.obj.price}</td>
                     <td>{this.props.obj.phone}</td>
                     <td>{this.props.obj.town}</td>
-                    <td>{this.props.obj.townLng}</td>
-                    <td>{this.props.obj.townLat}</td>
                     {/*<td>*/}
                     {/*    <Link className="edit-link" to={"/edit-utility/" + this.props.obj._id}>*/}
                     {/*        Edit*/}

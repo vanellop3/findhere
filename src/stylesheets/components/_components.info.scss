@@ -1,7 +1,28 @@
-.info{
+.info {
   text-align: center;
   padding-top: $basic-space*15;
   padding-bottom: $basic-space*20;
-  background: $border-gray;
+
   color: $dark-blue;
+  @include responsive($desktop) {
+    border-bottom: 2px solid $gold;
+  }
+
+  h2 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 60px;
+    color: $main-dark;
+    @include responsive($desktop) {
+      font-size: 50px;
+
+    }
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 30px;
+    color: $text-gray;
+    font-weight: 400;
+  }
 }

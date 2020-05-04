@@ -67,7 +67,7 @@ class EditProfile extends Component {
         const {errors} = this.state;
         console.log(this.state);
         return (
-            <div className="container" style={{marginTop: '50px', width: '700px'}}>
+            <div className="container" style={{marginTop: '50px'}}>
                 <h2 style={{marginBottom: '40px'}}>Profile edit</h2>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">

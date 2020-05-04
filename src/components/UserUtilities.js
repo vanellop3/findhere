@@ -9,11 +9,14 @@ import {withRouter} from "react-router-dom";
 
 const UserUtilities = (props) => {
     const [utilities, setUtility] = useState([]);
-
     useEffect(() => {
         axios.get('http://localhost:4000/utility/')
             .then(res => {
-                setUtility(res.data.filter(utility=>utility.creatorId === props.auth.user.id))
+                if (props.auth.user.isAdmin === true) {
+                    setUtility(res.data);
+                } else {
+                    setUtility(res.data.filter(utility => utility.creatorId === props.auth.user.id))
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -29,7 +32,7 @@ const UserUtilities = (props) => {
 
 
     return (<div className="table-wrapper">
-        <Table striped bordered hover>
+        <Table responsive>
             <thead>
             <tr>
                 <th>Title</th>
@@ -37,6 +40,8 @@ const UserUtilities = (props) => {
                 <th>Description</th>
                 <th>Price</th>
                 <th>Phone</th>
+                <th>Place</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>

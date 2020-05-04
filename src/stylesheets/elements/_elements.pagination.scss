@@ -1,19 +1,22 @@
 .page-numbers {
-  list-style: none;
   display: flex;
   justify-content: center;
+  margin-top: $basic-space *4;
+  padding: 0;
+  list-style: none;
 
   li {
     margin-right: $basic-space * 2;
     cursor: pointer;
+    color: $main-dark;
 
     &:first-child {
       margin-left: $basic-space * 2;
     }
 
-    &.active{
+    &.active {
       text-decoration: underline;
-      color:$dark-blue;
+      color: $text-gray;
     }
   }
 

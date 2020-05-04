@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import axios from 'axios';
 import CategoryList from "./CategoryList";
 import Pagination from "./Pagination";
@@ -31,7 +31,9 @@ class UtilitytList extends Component {
                     cityChoice: res.data.city
                 })
             })
-        setTimeout(function () { this.fetchData(); }.bind(this), 1200);
+        setTimeout(function () {
+            this.fetchData();
+        }.bind(this), 1200);
     }
 
 
@@ -51,15 +53,13 @@ class UtilitytList extends Component {
                         });
                         this.state.choice = '';
                     }
-                }
-                else if (this.state.cityChoice != '') {
+                } else if (this.state.cityChoice != '') {
                     console.log('vtoriq if');
                     this.setState({
                         utilities: res.data.filter(item => item.town === this.state.cityChoice)
                     });
                     this.state.cityChoice = '';
-                }
-                else {
+                } else {
                     console.log('elsa');
                     this.setState({
                         utilities: res.data
@@ -83,14 +83,13 @@ class UtilitytList extends Component {
     render() {
 
         return (
-            <div>
+            <>
                 <div className="centered--column">
-                    <CategoryList handleInputChange={this.handleInputChange} />
-                    <button className="btn--primary" onClick={this.getLocation}>get location </button>
+                    <CategoryList handleInputChange={this.handleInputChange}/>
+                    <button className="btn--primary" onClick={this.getLocation}>get location</button>
                 </div>
-                <Pagination start={1} perPage={3} utilities={this.state.utilities} />
-
-            </div>
+                <Pagination start={1} perPage={3} utilities={this.state.utilities}/>
+            </>
         );
     }
 }

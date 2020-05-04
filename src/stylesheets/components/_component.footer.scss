@@ -1,7 +1,5 @@
 .footer {
-  .ffw-logo {
-    img {
-      width: 200px;
-    }
-  }
+  padding-top: $basic-space *10;
+  padding-bottom: $basic-space *10;
+  background: $footer-gray;
 }

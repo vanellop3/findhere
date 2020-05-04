@@ -6,7 +6,7 @@ const Info = (props) => {
   return (<div className="info">
     <h2>{props.title}</h2>
     <h3>{props.description}</h3>
-    {props.button ? <Link className="btn--special" to="/register">Register</Link> : ''}
+    {props.button ? <Link className="btn--special" to="/register">{props.button}</Link> : ''}
   </div>);
 }
 

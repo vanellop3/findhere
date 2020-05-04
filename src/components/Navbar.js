@@ -18,14 +18,13 @@ class Navigation extends Component {
         const {isAuthenticated, user} = this.props.auth;
         const authLinks = (
             <Nav className="mr-auto">
-                <Nav.Link href="/my-utilities">My utilities</Nav.Link>
-                <Nav.Link href="/create-utility">Add utility</Nav.Link>
+                {this.props.auth.user.isAdmin ?
+                    <Nav.Link href="/my-utilities">All utilities</Nav.Link>
+                    : <Nav.Link href="/my-utilities">My utilities</Nav.Link>
+                } <Nav.Link href="/create-utility">Add utility</Nav.Link>
                 <Nav.Link href={"/edit-profile/" + this.props.auth.user.id}>My Profile</Nav.Link>
 
-                {this.props.auth.user.isAdmin ?
-                    <Nav.Link href="/utility-list">All utilities</Nav.Link>
-                    : <></>
-                }
+
                 <a href="" className="nav-link" onClick={this.onLogout.bind(this)}>
                     <img src={user.avatar} alt={user.name} title={user.name}
                          className="rounded-circle"

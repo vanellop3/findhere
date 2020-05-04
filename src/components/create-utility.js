@@ -72,7 +72,7 @@ class CreateUtility extends Component {
     render() {
         const { errors } = this.state;
         return (<div className="form-wrapper">
-            <div className="container" style={{ marginTop: '50px', width: '700px' }}>
+            <div className="container" style={{ marginTop: '50px'}}>
                 <h2 style={{ marginBottom: '40px' }}>Add utility</h2>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
@@ -120,7 +120,7 @@ class CreateUtility extends Component {
                     </div>
                     <div className="form-group">
                         <select name="town" onChange={this.handleInputChange}
-                            className={classnames('form-control form-control-lg', {
+                            className={classnames({
                                 'is-invalid': errors.town
                             })}>
                             <TownList />

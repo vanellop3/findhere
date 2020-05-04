@@ -17,6 +17,7 @@ import Navbar from "./components/Navbar";
 import UserUtilities from "./components/UserUtilities";
 import EditProfile from "./components/edit-profile";
 import Main from "./components/Main";
+import Footer from "./components/Footer";
 
 console.log(localStorage.jwtToken);
 
@@ -52,6 +53,8 @@ function App() {
                             <Route exact path="/my-utilities" component={UserUtilities}/>
                         </Switch>
                     </div>
+
+                    <Footer/>
                 </div>
             </Router>
         </Provider>
