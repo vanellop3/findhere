@@ -15,7 +15,7 @@
     margin-top: $basic-space *15;
     margin-left: $basic-space *6;
     padding-top: $basic-space *10;
-    width: 300px;
+    width: auto;
     border: 3px solid $pink;
 
     @include responsive($desktop) {
@@ -48,7 +48,7 @@
   }
 
   .card {
-    width: 250px;
+    width: auto;
     margin-bottom: $basic-space *4;
     border: 3px dotted $gold;
 
@@ -60,8 +60,17 @@
   }
 }
 
+.card-body{
+  display: flex;
+  flex-direction: row;
+}
 .expanded-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 120px;
+  max-width: 200px;
+  border-left: 2px solid $gold;
   color: $text-gray;
   transition: all .3s;
   animation: fadeInOut 3s;

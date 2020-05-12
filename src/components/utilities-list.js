@@ -88,7 +88,7 @@ class UtilitytList extends Component {
                     <CategoryList handleInputChange={this.handleInputChange}/>
                     <button className="btn--primary" onClick={this.getLocation}>get location</button>
                 </div>
-                <Pagination start={1} perPage={3} utilities={this.state.utilities}/>
+                <Pagination start={1} perPage={2} utilities={this.state.utilities}/>
             </>
         );
     }

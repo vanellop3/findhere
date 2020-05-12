@@ -7,9 +7,9 @@ const CardItem = (props) => {
 
     const [expanded, setExpanded] = useState(false);
 
-    function toggleExpanded() {
+    function toggleExpanded(e) {
+        console.log(e.target);
         setExpanded(!expanded);
-        console.log(this);
     }
 
     function categoryImg() {
@@ -32,23 +32,27 @@ const CardItem = (props) => {
     }
 
     return (
-    <Card className="text-center">
-        {categoryImg()}
-        <Card.Body>
-            <Card.Title>{props.obj.category}</Card.Title>
-            <Card.Text>
-                Price: {props.obj.price}$ </Card.Text>
-            <button onClick={toggleExpanded} className="btn--primary">More info</button>
-            <div className={`${expanded ? 'expanded-card' : 'normal-card'}`}>
-                <Card.Text> {props.obj.title}</Card.Text>
-                <Card.Text> Description: {props.obj.description}</Card.Text>
-                <Card.Text> Place: {props.obj.town}</Card.Text>
-            </div>
-        </Card.Body>
-        {/* <Card.Footer className="text-muted">Call now: {props.obj.phone}</Card.Footer> */}
-    </Card>
-)
-    ;
+        <Card className="text-center">
+            <Card.Body>
+                <div className="wrapper">
+                    {categoryImg()}
+                    <Card.Title>{props.obj.category}</Card.Title>
+                    <Card.Text>
+                        Price: {props.obj.price}$
+
+                    </Card.Text>
+                    <button onClick={toggleExpanded} className="btn--primary">More info</button>
+                </div>
+                <div className={`${expanded ? 'expanded-card' : 'normal-card'}`}>
+                    <Card.Text> {props.obj.title}</Card.Text>
+                    <Card.Text> Description: {props.obj.description}</Card.Text>
+                    <Card.Text> Place: {props.obj.town}</Card.Text>
+                </div>
+            </Card.Body>
+            {/* <Card.Footer className="text-muted">Call now: {props.obj.phone}</Card.Footer> */}
+        </Card>
+    )
+        ;
 }
 
 export default CardItem;

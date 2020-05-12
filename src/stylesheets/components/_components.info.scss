@@ -25,4 +25,9 @@
     color: $text-gray;
     font-weight: 400;
   }
+
+  &.dark{
+    background: linear-gradient(0deg,#f14437 0%,#ed5b0d 99%);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 0, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0 0);
+  }
 }

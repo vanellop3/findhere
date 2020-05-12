@@ -6,7 +6,6 @@ let mongoose = require('mongoose'),
 
 // Utility Model
 let utilitySchema = require('../models/Utility');
-console.log('hereee');
 
 // CREATE Student
 router.route('/create-utility').post(function (req, res,next) {
@@ -27,7 +26,7 @@ router.route('/create-utility').post(function (req, res,next) {
 
 // READ Utilities
 router.route('/').get((req, res) => {
-    utilitySchema.find((error, data) => {
+    utilitySchema.find((error, data, next) => {
         if (error) {
             return next(error)
         } else {
@@ -38,7 +37,7 @@ router.route('/').get((req, res) => {
 
 // Get Single Utilities
 router.route('/edit-utility/:id').get((req, res) => {
-    utilitySchema.findById(req.params.id, (error, data) => {
+    utilitySchema.findById(req.params.id, (error, data, next) => {
         if (error) {
             return next(error)
         } else {

@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import axios from 'axios';
 import TownList from '../components/TownList';
 import CategoryList from '../components/CategoryList';
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {addUtility} from "../actions/utility";
+import {withRouter} from "react-router-dom";
 
-export default class EditUtility extends Component {
+class EditUtility extends Component {
 
     constructor(props) {
         super(props)
@@ -22,20 +26,25 @@ export default class EditUtility extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/utility/edit-utility/' + this.props.match.params.id)
-            .then(res => {
-                this.setState({
-                    title: res.data.title,
-                    category: res.data.category,
-                    description: res.data.description,
-                    price: res.data.price,
-                    town: res.data.town,
-                    phone: res.data.phone
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        if (!this.props.auth.isAuthenticated) {
+            this.props.history.push('/login');
+        }
+        else {
+            axios.get('http://localhost:4000/utility/edit-utility/' + this.props.match.params.id)
+                .then(res => {
+                    this.setState({
+                        title: res.data.title,
+                        category: res.data.category,
+                        description: res.data.description,
+                        price: res.data.price,
+                        town: res.data.town,
+                        phone: res.data.phone
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
     handleInputChange(e) {
@@ -132,3 +141,9 @@ export default class EditUtility extends Component {
         </div >);
     }
 }
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+});
+
+export default connect(mapStateToProps)(EditUtility);
