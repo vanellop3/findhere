@@ -29,22 +29,9 @@ module.exports = function validateUtility(data) {
         errors.price = 'Price is required';
     }
 
-
-    // if (Validator.isNumeric(data.price)) {
-    //     errors.price = 'Price is required';
-    // }
-
     if (Validator.isEmpty(data.phone)) {
         errors.phone = 'Mobile phone is required';
     }
-
-    // if (Validator.isMobilePhone(data.phone)) {
-    //     errors.phone = 'Please add a valid phone number';
-    // }
-
-    // if (Validator.isInt(data.phone)) {
-    //     errors.phone = 'Please add a valid phone number';
-    // }
 
     return {
         errors,

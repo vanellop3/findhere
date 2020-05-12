@@ -23,16 +23,16 @@ router.post('/register', function (req, res) {
                 email: 'Email already exists'
             });
         } else {
-            const avatar = gravatar.url(req.body.email, {
-                s: '200',
-                r: 'pg',
-                d: 'mm'
-            });
+            // const avatar = gravatar.url(req.body.email, {
+            //     s: '200',
+            //     r: 'pg',
+            //     d: 'mm'
+            // });
             const newUser = new User({
                 name: req.body.name,
                 email: req.body.email,
                 password: req.body.password,
-                avatar,
+                // avatar,
                 isAdmin: req.body.isAdmin
             });
 
@@ -79,7 +79,7 @@ router.post('/login', (req, res) => {
                         const payload = {
                             id: user.id,
                             name: user.name,
-                            avatar: user.avatar,
+                            // avatar: user.avatar,
                             isAdmin: user.isAdmin
                         }
                         jwt.sign(payload, 'secret', {
