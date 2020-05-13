@@ -1,4 +1,4 @@
-.utility-wrap {
+.utilities {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -37,13 +37,15 @@
     }
   }
 }
-.utility-list__wrap{
+
+.search-wrap{
   background-image: url("../../img/search.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.utility-wrap--search {
+
+.utilities--search {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -68,7 +70,13 @@
 .card-body{
   display: flex;
   flex-direction: row;
+
+  .text-wrapper{
+    border-radius: 3px;
+    background-color: $bg-light;
+  }
 }
+
 .expanded-card {
   display: flex;
   flex-direction: column;

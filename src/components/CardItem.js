@@ -34,7 +34,7 @@ const CardItem = (props) => {
     return (
         <Card className="text-center">
             <Card.Body>
-                <div className="wrapper">
+                <div className="text-wrapper">
                     {categoryImg()}
                     <Card.Title>{props.obj.category}</Card.Title>
                     <Card.Text>

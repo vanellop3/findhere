@@ -9,7 +9,7 @@ import LatestUtilities from './LatestUtilities';
 const Main = () => {
 
   return (
-  <div className="">
+  <div className="wrapper">
     <Banner />
     <Info title="Here you can find" description="specialists from all kind of places" />
     <LatestUtilities/>

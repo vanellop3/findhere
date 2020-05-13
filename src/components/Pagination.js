@@ -38,13 +38,13 @@ const Pagination = (props) => {
 
     return (
         !!currentTodos.length ? <>
-            <div className="utility-wrap--search">
+            <div className="utilities--search">
                 {renderTodos}
             </div>
             <ul className="page-numbers">
                 « {renderPageNumbers} »
             </ul>
-        </> : <p className="utility-wrap--search">no data</p>
+        </> : <p className="utilities--search">no data</p>
 
     )
 }

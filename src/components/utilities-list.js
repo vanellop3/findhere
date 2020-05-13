@@ -84,7 +84,7 @@ class UtilitytList extends Component {
     render() {
 
         return (
-            <div className="utility-list__wrap">
+            <div className="search-wrap">
                 <div className="centered--column">
                     <CategoryList handleInputChange={this.handleInputChange}/>
                     <button className="btn--primary" onClick={this.getLocation}>get location</button>

@@ -62,7 +62,7 @@ class CreateUtility extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
-                errors: nextProps.errors
+                errors: nextProps.errorscontainer
             });
         } else {
             this.props.history.push('/utility-list');

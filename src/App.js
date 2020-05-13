@@ -40,10 +40,10 @@ function App() {
                 <div className="App">
                     <Navbar/>
 
-                    <div className="wrapper">
+                    <>
                         <Switch>
                             {/*<Route exact path='/' component={CreateUtility}/>*/}
-                            <Route exact path='/'  component={Main}/>
+                            <Route exact path='/' component={Main}/>
                             <Route path="/create-utility" component={CreateUtility}/>
                             <Route path="/edit-utility/:id" component={EditUtility}/>
                             <Route path="/edit-profile/:id" component={EditProfile}/>
@@ -52,7 +52,7 @@ function App() {
                             <Route exact path="/login" component={Login}/>
                             <Route exact path="/my-utilities" component={UserUtilities}/>
                         </Switch>
-                    </div>
+                    </>
 
                     {/* <Footer/> */}
                 </div>

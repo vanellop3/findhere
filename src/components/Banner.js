@@ -9,7 +9,7 @@ const Banner = () => {
                     <h3>Search service</h3>
                     <h3>Show service</h3>
                     <h3>Get service</h3>
-                    <h2>FindHere is the right place</h2>
+                    {/*<h2>FindHere is the right place</h2>*/}
                 </div>
                 <div className="image"></div>
             </div>
