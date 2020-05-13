@@ -6,7 +6,8 @@ const Footer = () => {
         <>
             <div className="footer">
                 <div className="text">
-                    <h3>All rights reserved</h3>
+                    <p>This is a simple React node.js application for serving/finding services.</p>
+                    <h5>All rights reserved</h5>
                 </div>
             </div>
         </>
