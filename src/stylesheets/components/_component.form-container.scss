@@ -1,3 +1,17 @@
-.wrapper{
+.wrapper {
   background-color: $bg-light;
+}
+
+.container {
+  margin-top: $basic-space *10;
+  @include responsive($desktop) {
+    max-width: 540px;
+  }
+}
+
+.table-wrapper {
+  @include responsive($desktop) {
+    width: 80%;
+    margin: 0 auto;
+  }
 }

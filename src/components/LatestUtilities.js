@@ -26,9 +26,9 @@ const UserUtilities = () => {
 
 
     return (
-        <div className="wrap">
-            <h2>Our latest 3 utilities</h2>
-            <div className="utility-wrap">
+        <div className="latest-wrap">
+            <h2>Our latest utilities</h2>
+            <div className="utilities">
                 {DataTable()}
             </div>
         </div>

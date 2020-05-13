@@ -62,7 +62,7 @@ class CreateUtility extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
-                errors: nextProps.errors
+                errors: nextProps.errorscontainer
             });
         } else {
             this.props.history.push('/utility-list');
@@ -72,7 +72,7 @@ class CreateUtility extends Component {
     render() {
         const { errors } = this.state;
         return (<div className="form-wrapper">
-            <div className="container" style={{ marginTop: '50px'}}>
+            <div className="container">
                 <h2 style={{ marginBottom: '40px' }}>Add utility</h2>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
@@ -108,7 +108,7 @@ class CreateUtility extends Component {
                     <div className="form-group">
                         <input
                             type="number"
-                            placeholder="Price"
+                            placeholder="Price in $"
                             className={classnames('form-control form-control-lg', {
                                 'is-invalid': errors.price
                             })}
