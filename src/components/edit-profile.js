@@ -67,7 +67,7 @@ class EditProfile extends Component {
         const {errors} = this.state;
         console.log(this.state);
         return (
-            <div className="container" style={{marginTop: '50px'}}>
+            <div className="container">
                 <h2 style={{marginBottom: '40px'}}>Profile edit</h2>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
@@ -110,7 +110,7 @@ class EditProfile extends Component {
                         {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn--primary">
                             Update User
                         </button>
                     </div>

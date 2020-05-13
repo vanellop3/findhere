@@ -32,12 +32,12 @@ class StudentTableRow extends Component {
                 <tr>
                     <td>{this.props.obj.title}</td>
                     <td>{this.props.obj.category}</td>
-                    <td>{this.props.obj.description}</td>
-                    <td>{this.props.obj.price}</td>
-                    <td>{this.props.obj.phone}</td>
+                    {/*<td>{this.props.obj.description}</td>*/}
+                    {/*<td>{this.props.obj.price}</td>*/}
+                    {/*<td>{this.props.obj.phone}</td>*/}
                     <td>{this.props.obj.town}</td>
                     <td>
-                        <Link className="edit-link" to={"/edit-utility/" + this.props.obj._id}>
+                        <Link  variant="success" className="edit-link" to={"/edit-utility/" + this.props.obj._id}>
                             Edit
                         </Link>
                         <Button onClick={this.deleteStudent} size="sm" variant="danger">Delete</Button>
@@ -49,9 +49,9 @@ class StudentTableRow extends Component {
                 <tr>
                     <td>{this.props.obj.title}</td>
                     <td>{this.props.obj.category}</td>
-                    <td>{this.props.obj.description}</td>
-                    <td>{this.props.obj.price}</td>
-                    <td>{this.props.obj.phone}</td>
+                    {/*<td>{this.props.obj.description}</td>*/}
+                    {/*<td>{this.props.obj.price}</td>*/}
+                    {/*<td>{this.props.obj.phone}</td>*/}
                     <td>{this.props.obj.town}</td>
                     {/*<td>*/}
                     {/*    <Link className="edit-link" to={"/edit-utility/" + this.props.obj._id}>*/}

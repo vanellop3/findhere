@@ -1,39 +1,46 @@
-.utilities {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: $basic-space *10;
-
-  @include responsive($desktop) {
-    flex-direction: row;
-    margin-top: $basic-space *30;
-    margin-bottom: $basic-space *30;
+.latest-wrap {
+  h2{
+    padding-top: $basic-space *4;
+    text-align: center;
+    color: $gold;
   }
-
-  .card {
-    position: relative;
-    margin-top: $basic-space *15;
-    margin-left: $basic-space *6;
-    padding-top: $basic-space *10;
-    width: auto;
-    border: 3px solid $pink;
+  .utilities {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: $basic-space *10;
 
     @include responsive($desktop) {
-      margin-top: 0;
+      flex-direction: row;
+      margin-top: $basic-space *30;
+      margin-bottom: $basic-space *30;
     }
 
-    .card__img {
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translate(-50%, -100%);
-      width: 130px;
-      background: $pink;
-      border-radius: 50%;
-    }
+    .card {
+      position: relative;
+      margin-top: $basic-space *15;
+      margin-left: $basic-space *6;
+      padding-top: $basic-space *10;
+      width: auto;
+      border: 3px solid $pink;
 
-    &:hover {
-      border: 3px solid $gold;
+      @include responsive($desktop) {
+        margin-top: 0;
+      }
+
+      .card__img {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        width: 130px;
+        background: $pink;
+        border-radius: 50%;
+      }
+
+      &:hover {
+        border: 3px solid $gold;
+      }
     }
   }
 }

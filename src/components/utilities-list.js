@@ -80,7 +80,6 @@ class UtilitytList extends Component {
         this.fetchData();
     }
 
-
     render() {
 
         return (

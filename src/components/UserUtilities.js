@@ -37,9 +37,9 @@ const UserUtilities = (props) => {
             <tr>
                 <th>Title</th>
                 <th>Category</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Phone</th>
+                {/*<th>Description</th>*/}
+                {/*<th>Price</th>*/}
+                {/*<th>Phone</th>*/}
                 <th>Place</th>
                 <th>Action</th>
             </tr>
