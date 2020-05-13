@@ -11,9 +11,9 @@ const Main = () => {
   return (
   <div className="">
     <Banner />
-    <Info title="Here you can find" description="latest utilities" />
+    <Info title="Here you can find" description="specialists from all kind of places" />
     <LatestUtilities/>
-    <Info title="Looking for utility" description="This is the right place" />
+    <Info className="colored" title="Looking for utility" description="This is the right place" />
     <UtilitytList/>
     <Info className="dark" title="Wanna share you knowledge and earn money" button="Register now" />
     <Footer/>

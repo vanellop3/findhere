@@ -36,8 +36,9 @@ class UtilitytList extends Component {
         }.bind(this), 1200);
     }
 
-
     fetchData = () => {
+        console.log(this.state.choice);
+
         axios.get('http://localhost:4000/utility/')
             .then(res => {
                 if (this.state.choice != '') {
@@ -83,13 +84,13 @@ class UtilitytList extends Component {
     render() {
 
         return (
-            <>
+            <div className="utility-list__wrap">
                 <div className="centered--column">
                     <CategoryList handleInputChange={this.handleInputChange}/>
                     <button className="btn--primary" onClick={this.getLocation}>get location</button>
                 </div>
                 <Pagination start={1} perPage={2} utilities={this.state.utilities}/>
-            </>
+            </div>
         );
     }
 }

@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import CardItem from './CardItem';
 
@@ -20,17 +20,18 @@ const UserUtilities = () => {
 
     const DataTable = () => {
         return utilities.map((res, i) => {
-            return <CardItem obj={res} key={i} />;
+            return <CardItem obj={res} key={i}/>;
         });
     }
 
 
     return (
-        <>
+        <div className="wrap">
+            <h2>Our latest 3 utilities</h2>
             <div className="utility-wrap">
                 {DataTable()}
             </div>
-        </>
+        </div>
     );
 }
 
