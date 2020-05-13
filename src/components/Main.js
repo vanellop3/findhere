@@ -16,6 +16,7 @@ const Main = () => {
     <Info title="Looking for utility" description="This is the right place" />
     <UtilitytList/>
     <Info className="dark" title="Wanna share you knowledge and earn money" button="Register now" />
+    <Footer/>
   </div>);
 }
 

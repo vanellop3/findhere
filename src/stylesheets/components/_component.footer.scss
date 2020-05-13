@@ -1,5 +1,11 @@
 .footer {
-  padding-top: $basic-space *10;
-  padding-bottom: $basic-space *10;
+  padding-top: $basic-space *6;
+  padding-bottom: $basic-space *6;
   background: $footer-gray;
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
 }
