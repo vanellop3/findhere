@@ -3,7 +3,7 @@ import {GET_ERRORS} from "./types";
 
 export const addUtility = (utility, history) => dispatch => {
     axios.post('http://localhost:4000/utility/create-utility', utility)
-        .then(res => history.push('/utility-list'))
+        .then(res => history.push('/my-utilities'))
         .catch(err => {
             dispatch({
                 type: GET_ERRORS,
