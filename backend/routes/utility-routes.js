@@ -1,78 +1,21 @@
-const validateUtility = require('../validation/utility');
+var utility_controller = require('../controllers/UtilityController');
+var  express = require('express');
+var  router = express.Router();
 
-let mongoose = require('mongoose'),
-    express = require('express'),
-    router = express.Router();
-
-// Utility Model
-let utilitySchema = require('../models/Utility');
 
 // CREATE Student
-router.route('/create-utility').post(function (req, res,next) {
-    const {errors, isValid} = validateUtility(req.body);
-    console.log(isValid);
-    if (!isValid) {
-        return res.status(400).json(errors);
-    }
-    utilitySchema.create(req.body, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            console.log(data)
-            res.json(data)
-        }
-    })
-});
+router.route('/create-utility').post(utility_controller.create_utility);
 
 // READ Utilities
-router.route('/').get((req, res) => {
-    utilitySchema.find((error, data, next) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
-})
+router.route('/').get(utility_controller.getAllUtilities);
 
 // Get Single Utilities
-router.route('/edit-utility/:id').get((req, res) => {
-    utilitySchema.findById(req.params.id, (error, data, next) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
-})
-
+router.route('/edit-utility/:id').get(utility_controller.editUtility);
 
 // Update Utilities
-router.route('/update-utility/:id').put((req, res, next) => {
-    utilitySchema.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-    }, (error, data) => {
-        if (error) {
-            return next(error);
-            console.log(error)
-        } else {
-            res.json(data)
-            console.log('Utility updated successfully !')
-        }
-    })
-})
+router.route('/update-utility/:id').put(utility_controller.updateUtility);
 
 // Delete Utilities
-router.route('/delete-utility/:id').delete((req, res, next) => {
-    utilitySchema.findByIdAndRemove(req.params.id, (error, data) => {
-        if (error) {
-            return next(error);
-        } else {
-            res.status(200).json({
-                msg: data
-            })
-        }
-    })
-})
+router.route('/delete-utility/:id').delete(utility_controller.deleteUtility);
 
 module.exports = router;
