@@ -3,7 +3,7 @@ var  express = require('express');
 var  router = express.Router();
 
 
-// CREATE Student
+// CREATE Utility
 router.route('/create-utility').post(utility_controller.create_utility);
 
 // READ Utilities
