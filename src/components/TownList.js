@@ -5,7 +5,7 @@ const TownList = () => {
 
   return(
       <>
-      <option>Choose town</option>
+      <option selected="true" disabled="disabled">Choose town</option>
       {data.map(town =>
       <option
       value={town.city}>{town.city}</option>)}
