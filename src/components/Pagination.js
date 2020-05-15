@@ -18,7 +18,7 @@ const Pagination = (props) => {
     });
 
 
-    function showPageNumbers() {
+    function getFirstPage() {
         setCurrentPage(1);
     }
 
@@ -27,8 +27,7 @@ const Pagination = (props) => {
         pageNumbers.push(i);
     }
 
-    useEffect(() => showPageNumbers
-        , [props.utilities]);
+    useEffect(() => getFirstPage, [props.utilities]);
 
     const renderPageNumbers = pageNumbers.map(number => {
         return (

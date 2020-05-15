@@ -4,14 +4,14 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import {connect} from "react-redux";
 
-class StudentTableRow extends Component {
+class UtilityTableRow extends Component {
 
     constructor(props) {
         super(props);
-        this.deleteStudent = this.deleteStudent.bind(this);
+        this.deleteUtility = this.deleteUtility.bind(this);
     }
 
-    deleteStudent() {
+    deleteUtility() {
         var r = window.confirm("Are you sure?");
         if (r == true) {
             axios.delete('http://localhost:4000/utility/delete-utility/' + this.props.obj._id)
@@ -40,7 +40,7 @@ class StudentTableRow extends Component {
                         <Link  variant="success" className="edit-link" to={"/edit-utility/" + this.props.obj._id}>
                             Edit
                         </Link>
-                        <Button onClick={this.deleteStudent} size="sm" variant="danger">Delete</Button>
+                        <Button onClick={this.deleteUtility} size="sm" variant="danger">Delete</Button>
                     </td>
                 </tr>
             );
@@ -69,4 +69,4 @@ const mapStateToProps = state => ({
     auth: state.auth,
 });
 
-export default connect(mapStateToProps)(StudentTableRow);
+export default connect(mapStateToProps)(UtilityTableRow);
