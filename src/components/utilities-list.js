@@ -12,12 +12,11 @@ class UtilitytList extends Component {
         this.state = {
             utilities: [],
             choice: '',
-            cityChoice: ''
+            cityChoice: '',
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.getLocation = this.getLocation.bind(this);
-        this.filteringUtilities = this.filteringUtilities.bind(this);
 
     }
 
@@ -28,7 +27,6 @@ class UtilitytList extends Component {
     getLocation() {
         axios.get("https://ipinfo.io?token=35797a9aa82ded")
             .then(res => {
-                console.log(res.data.city);
                 this.setState({
                     cityChoice: res.data.city
                 })
@@ -39,8 +37,6 @@ class UtilitytList extends Component {
     }
 
     fetchData = () => {
-        console.log(this.state.choice);
-
         axios.get('http://localhost:4000/utility/')
             .then(res => {
                 if (this.state.choice != '') {
@@ -79,23 +75,12 @@ class UtilitytList extends Component {
         this.fetchData();
     }
 
-    filteringUtilities(value) {
-        console.log('vliza tukkk');
-        // console.log(value !== null );
-        // if(value.length !== 0) {
-            this.setState({
-                utilities: value
-            });
-        // }
-    }
 
     render() {
-
         return (
             <div className="search-wrap">
                 <div className="centered--column">
-                    <SearchBar utilities={this.state.utilities}
-                               filteringUtilities={this.filteringUtilities}/>
+                    <SearchBar/>
                     <CategoryList handleInputChange={this.handleInputChange}/>
                     <button className="btn--primary" onClick={this.getLocation}>Get utilities near you</button>
                 </div>

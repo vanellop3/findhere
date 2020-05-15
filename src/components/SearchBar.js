@@ -1,47 +1,50 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import Pagination from './Pagination';
 
 
 const SearchBar = (props) => {
     const [searchOption, setSearchOption] = useState('');
-    const [searchResults, setSearchResults] = useState();
-    console.log(props.utilities);
+    const [utilities, setUtility] = useState([]);
+    const [searchResults, setSearchResults] = useState(utilities);
+
     const handleChange = event => {
         setSearchOption(event.target.value);
-        const results = props.utilities.filter(item =>
-            item.title.toLowerCase().includes(searchOption) || item.description.toLowerCase().includes(searchOption));
-        setSearchResults(results);
-        console.log();
     };
 
+   const fetchData = () => {
+        axios.get('http://localhost:4000/utility/')
+        .then(res => {
+            var arr = res.data;
+            setUtility(arr);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+    }
     useEffect(() => {
-        const results = props.utilities.filter(item =>
+        fetchData();
+        const results = utilities.filter(item =>
             item.title.toLowerCase().includes(searchOption) || item.description.toLowerCase().includes(searchOption));
-        if (results.length !== 0) {
+            console.log(results);
             setSearchResults(results);
-            props.filteringUtilities(searchResults)
-        }
-        console.log(setSearchResults);
-    }, [searchOption]);
+            }, [searchOption])
 
     return (
-        <div className="App">
+        
+        <div className="search-wrap">
             <input
                 type="text"
-                placeholder="Search"
+                placeholder="What are you looking for?"
                 value={searchOption}
                 onChange={handleChange}
             />
-            {/*{ props.filteringUtilities(searchResults)}*/}
-            {console.log(searchResults)}
-            {/*{console.log(searchResults && searchResults.map(item => (*/}
-            {/*    <li>{item.title}</li>*/}
-            {/*)))}*/}
-            {/*<ul>*/}
-            {/*    {searchResults.map(item => (*/}
-            {/*        <li>{item}</li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
+            {/* {!!searchResults.length ? */}
+     <Pagination  start={1} perPage={4} utilities={searchResults}/>
+{/* : */}
+            {/* <Pagination  start={1} perPage={4} utilities={utilities}/> } */}
+
         </div>
     )
 }
