@@ -8,7 +8,6 @@ const CardItem = (props) => {
     const [expanded, setExpanded] = useState(false);
 
     function toggleExpanded(e) {
-        console.log(e.target);
         setExpanded(!expanded);
     }
 
@@ -27,7 +26,7 @@ const CardItem = (props) => {
             case 'house repair':
                 return <div><img class="card__img" src={require('../img/house.png')}/></div>;
             default:
-                return <div> animal</div>
+                return <div> no category image</div>
         }
     }
 
