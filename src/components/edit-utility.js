@@ -1,11 +1,8 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import axios from 'axios';
 import TownList from '../components/TownList';
 import CategoryList from '../components/CategoryList';
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {addUtility} from "../actions/utility";
-import {withRouter} from "react-router-dom";
 
 class EditUtility extends Component {
 
@@ -28,18 +25,22 @@ class EditUtility extends Component {
     componentDidMount() {
         if (!this.props.auth.isAuthenticated) {
             this.props.history.push('/login');
-        }
-        else {
+        } else {
             axios.get('http://localhost:4000/utility/edit-utility/' + this.props.match.params.id)
                 .then(res => {
-                    this.setState({
-                        title: res.data.title,
-                        category: res.data.category,
-                        description: res.data.description,
-                        price: res.data.price,
-                        town: res.data.town,
-                        phone: res.data.phone
-                    });
+                    if (res.data.creatorId !== this.props.auth.user.id) {
+                        alert('You are not allowed no access this page');
+                        this.props.history.push('/my-utilities');
+                    } else {
+                        this.setState({
+                            title: res.data.title,
+                            category: res.data.category,
+                            description: res.data.description,
+                            price: res.data.price,
+                            town: res.data.town,
+                            phone: res.data.phone
+                        });
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -70,10 +71,10 @@ class EditUtility extends Component {
                 console.log(res.data)
                 console.log('Utility successfully updated')
             }).catch((error) => {
-                console.log(error)
-            })
+            console.log(error)
+        })
 
-        // Redirect to Student List
+        // Redirect to Utility List
         this.props.history.push('/utility-list')
     }
 
@@ -82,7 +83,7 @@ class EditUtility extends Component {
         return (<div className="form-wrapper">
 
             <div className="container">
-                <h2 style={{ marginBottom: '40px' }}>Edit utility</h2>
+                <h2 style={{marginBottom: '40px'}}>Edit utility</h2>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <input
@@ -94,7 +95,7 @@ class EditUtility extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <CategoryList handleInputChange={this.handleInputChange} />
+                        <CategoryList handleInputChange={this.handleInputChange}/>
                     </div>
                     <div className="form-group">
                         <input
@@ -116,7 +117,7 @@ class EditUtility extends Component {
                     </div>
                     <div className="form-group">
                         <select name="town" onChange={this.handleInputChange}>
-                            <TownList />
+                            <TownList/>
                         </select>
                     </div>
                     <div className="form-group">
@@ -138,7 +139,7 @@ class EditUtility extends Component {
                     </div>
                 </form>
             </div>
-        </div >);
+        </div>);
     }
 }
 

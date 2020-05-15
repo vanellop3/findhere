@@ -42,15 +42,13 @@ class CreateUtility extends Component {
             description: this.state.description,
             price: this.state.price,
             town: this.state.town,
-            townLng: this.state.townLng,
-            townLat: this.state.townLat,
             creatorId: this.props.auth.user.id,
             phone: this.state.phone
 
         };
         this.props.addUtility(utilityObject, this.props.history);
         console.log(utilityObject);
-        this.setState({ title: '', category: '', description: '', price: '', creatorId: '', town: '', townLng: '', townLat: '', phone: '' })
+        // this.setState({ title: '', category: '', description: '', price: '', creatorId: '', town: '', townLng: '', townLat: '', phone: '' })
     }
 
     componentDidMount() {

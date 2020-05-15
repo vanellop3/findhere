@@ -10,7 +10,6 @@ class EditProfile extends Component {
             name: '',
             email: '',
             password: '',
-            password_confirm: '',
             errors: {}
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -74,9 +73,7 @@ class EditProfile extends Component {
                         <input
                             type="text"
                             placeholder="Name"
-                            className={classnames('form-control form-control-lg', {
-                                'is-invalid': errors.name
-                            })}
+                            className={'form-control form-control-lg'}
                             name="name"
                             onChange={this.handleInputChange}
                             value={this.state.name}
@@ -87,9 +84,7 @@ class EditProfile extends Component {
                         <input
                             type="email"
                             placeholder="Email"
-                            className={classnames('form-control form-control-lg', {
-                                'is-invalid': errors.email
-                            })}
+                            className={'form-control form-control-lg'}
                             name="email"
                             onChange={this.handleInputChange}
                             value={this.state.email}
@@ -100,9 +95,7 @@ class EditProfile extends Component {
                         <input
                             type="password"
                             placeholder="Password"
-                            className={classnames('form-control form-control-lg', {
-                                'is-invalid': errors.password
-                            })}
+                            className={'form-control form-control-lg'}
                             name="password"
                             onChange={this.handleInputChange}
                             value={this.state.password}
