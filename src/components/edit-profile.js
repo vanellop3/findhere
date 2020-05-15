@@ -10,7 +10,6 @@ class EditProfile extends Component {
             name: '',
             email: '',
             password: '',
-            errors: {}
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,19 +40,17 @@ class EditProfile extends Component {
         if (this.state.password === '') {
             user = {
                 name: this.state.name,
-                email: this.state.email,
             }
         } else {
             user = {
                 name: this.state.name,
-                email: this.state.email,
                 password: this.state.password,
             }
         }
         axios.put('http://localhost:4000/users/update-profile/' + this.props.auth.user.id, user)
             .then((res) => {
                 console.log(res.data)
-                console.log('Profile successfully updated')
+                alert('Profile successfully updated')
             }).catch((error) => {
             console.log(error)
         })
@@ -78,7 +75,6 @@ class EditProfile extends Component {
                             onChange={this.handleInputChange}
                             value={this.state.name}
                         />
-                        {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
                     </div>
                     <div className="form-group">
                         <input
@@ -86,10 +82,9 @@ class EditProfile extends Component {
                             placeholder="Email"
                             className={'form-control form-control-lg'}
                             name="email"
-                            onChange={this.handleInputChange}
                             value={this.state.email}
+                            disabled="disabled"
                         />
-                        {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                     </div>
                     <div className="form-group">
                         <input
@@ -100,7 +95,6 @@ class EditProfile extends Component {
                             onChange={this.handleInputChange}
                             value={this.state.password}
                         />
-                        {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn--primary">
