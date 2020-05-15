@@ -81,9 +81,12 @@ class UtilitytList extends Component {
 
     filteringUtilities(value) {
         console.log('vliza tukkk');
-        this.setState({
-            utilities: value
-        });
+        // console.log(value !== null );
+        // if(value.length !== 0) {
+            this.setState({
+                utilities: value
+            });
+        // }
     }
 
     render() {

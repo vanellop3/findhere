@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
+import axios from "axios";
 
 
 const SearchBar = (props) => {
     const [searchOption, setSearchOption] = useState('');
     const [searchResults, setSearchResults] = useState();
+    console.log(props.utilities);
     const handleChange = event => {
         setSearchOption(event.target.value);
         const results = props.utilities.filter(item =>
@@ -15,8 +17,11 @@ const SearchBar = (props) => {
     useEffect(() => {
         const results = props.utilities.filter(item =>
             item.title.toLowerCase().includes(searchOption) || item.description.toLowerCase().includes(searchOption));
-        // setSearchResults(results);
-        console.log();
+        if (results.length !== 0) {
+            setSearchResults(results);
+            props.filteringUtilities(searchResults)
+        }
+        console.log(setSearchResults);
     }, [searchOption]);
 
     return (
