@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import axios from 'axios';
 import CategoryList from "./CategoryList";
 import Pagination from "./Pagination";
+import SearchBar from "./SearchBar";
 
 
 class UtilitytList extends Component {
@@ -16,6 +17,7 @@ class UtilitytList extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.getLocation = this.getLocation.bind(this);
+        this.filteringUtilities = this.filteringUtilities.bind(this);
 
     }
 
@@ -77,11 +79,20 @@ class UtilitytList extends Component {
         this.fetchData();
     }
 
+    filteringUtilities(value) {
+        console.log('vliza tukkk');
+        this.setState({
+            utilities: value
+        });
+    }
+
     render() {
 
         return (
             <div className="search-wrap">
                 <div className="centered--column">
+                    <SearchBar utilities={this.state.utilities}
+                               filteringUtilities={this.filteringUtilities}/>
                     <CategoryList handleInputChange={this.handleInputChange}/>
                     <button className="btn--primary" onClick={this.getLocation}>Get utilities near you</button>
                 </div>
