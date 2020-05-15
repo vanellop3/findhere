@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import axios from 'axios';
 import CategoryList from "./CategoryList";
 import Pagination from "./Pagination";
-import SearchBar from "./SearchBar";
 
 
 class UtilitytList extends Component {
@@ -12,7 +11,7 @@ class UtilitytList extends Component {
         this.state = {
             utilities: [],
             choice: '',
-            cityChoice: '',
+            cityChoice: ''
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -80,7 +79,6 @@ class UtilitytList extends Component {
         return (
             <div className="search-wrap">
                 <div className="centered--column">
-                    <SearchBar/>
                     <CategoryList handleInputChange={this.handleInputChange}/>
                     <button className="btn--primary" onClick={this.getLocation}>Get utilities near you</button>
                 </div>

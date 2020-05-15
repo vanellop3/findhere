@@ -5,6 +5,7 @@ import Collapse from 'react-bootstrap/Collapse';
 import Info from "./Info";
 import Footer from "./Footer";
 import LatestUtilities from './LatestUtilities';
+import SearchBar from "./SearchBar";
 
 const Main = () => {
 
@@ -12,6 +13,7 @@ const Main = () => {
   <div className="wrapper">
     <Banner />
     <Info title="Here you can find" description="specialists from all kind of places" />
+    <SearchBar/>
     <LatestUtilities/>
     <Info className="colored" title="Looking for utility" description="This is the right place" />
     <UtilitytList/>
