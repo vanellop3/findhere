@@ -50,7 +50,7 @@ const Pagination = (props) => {
             <ul className="page-numbers">
                 « {renderPageNumbers} »
             </ul>
-        </> : <p className="utilities--search">no data</p>
+        </> : <p className="utilities--search">...</p>
 
     )
 }
