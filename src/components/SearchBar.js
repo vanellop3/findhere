@@ -36,7 +36,7 @@ const SearchBar = (props) => {
         <div className="latest-wrap centered--column">
             <input
                 type="text"
-                placeholder="Search now!"
+                placeholder="Search now 🔎"
                 value={searchOption}
                 onChange={handleChange}
             />
