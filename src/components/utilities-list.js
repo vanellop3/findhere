@@ -16,6 +16,9 @@ class UtilitytList extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.getLocation = this.getLocation.bind(this);
+        this.sortByDate = this.sortByDate.bind(this);
+        this.sortByPriceАsc = this.sortByPriceАsc.bind(this);
+        this.sortByPriceDsc = this.sortByPriceDsc.bind(this);
 
     }
 
@@ -57,13 +60,33 @@ class UtilitytList extends Component {
                     this.state.cityChoice = '';
                 } else {
                     this.setState({
-                        utilities: res.data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                        utilities: res.data
                     });
                 }
             })
             .catch((error) => {
                 console.log(error);
             })
+    }
+
+    sortByDate() {
+        this.setState({
+            utilities: this.state.utilities.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        })
+    }
+
+    sortByPriceDsc() {
+        console.log(this.state.utilities.sort((a, b) => b.price - a.price));
+        this.setState({
+            utilities: this.state.utilities.sort((a, b) => b.price - a.price)
+        })
+    }
+
+    sortByPriceАsc() {
+        console.log(this.state.utilities.sort((a, b) => b.price - a.price));
+        this.setState({
+            utilities: this.state.utilities.sort((a, b) => a.price - b.price)
+        })
     }
 
     handleInputChange(e) {
@@ -81,6 +104,11 @@ class UtilitytList extends Component {
                 <div className="centered--column">
                     <CategoryList handleInputChange={this.handleInputChange}/>
                     <button className="btn--primary" onClick={this.getLocation}>Get utilities near you</button>
+                    <div className="button__wrap">
+                        <button className="btn--special" onClick={this.sortByDate}>Sort By date</button>
+                        <button className="btn--special" onClick={this.sortByPriceАsc}>Sort By priceASC ⬆</button>
+                        <button className="btn--special" onClick={this.sortByPriceDsc}>Sort By priceDSC ⬇</button>
+                    </div>
                 </div>
                 <Pagination start={1} perPage={6} utilities={this.state.utilities}/>
             </div>
