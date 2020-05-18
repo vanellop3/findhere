@@ -26,7 +26,6 @@ class UtilitytList extends Component {
     getLocation() {
         axios.get("https://ipinfo.io?token=35797a9aa82ded")
             .then(res => {
-                console.log(res.data.city);
                 this.setState({
                     cityChoice: res.data.city
                 })
@@ -37,8 +36,6 @@ class UtilitytList extends Component {
     }
 
     fetchData = () => {
-        console.log(this.state.choice);
-
         axios.get('http://localhost:4000/utility/')
             .then(res => {
                 if (this.state.choice != '') {
@@ -77,8 +74,8 @@ class UtilitytList extends Component {
         this.fetchData();
     }
 
-    render() {
 
+    render() {
         return (
             <div className="search-wrap">
                 <div className="centered--column">
