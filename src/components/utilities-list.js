@@ -57,7 +57,7 @@ class UtilitytList extends Component {
                     this.state.cityChoice = '';
                 } else {
                     this.setState({
-                        utilities: res.data
+                        utilities: res.data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                     });
                 }
             })
