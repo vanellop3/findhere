@@ -59,6 +59,8 @@
 
   @include responsive($desktop) {
     flex-direction: row;
+    margin: 0 auto;
+    width: 800px;
   }
 
   .card {
@@ -66,9 +68,12 @@
     margin-bottom: $basic-space *4;
     border: 3px dotted $gold;
 
-    @include responsive($desktop) {
+    @include responsive($tablet) {
       &:not(:first-child) {
         margin-left: $basic-space*3;
+      }
+      &:nth-child(4n){
+        margin-left: 0;
       }
     }
   }
@@ -79,6 +84,7 @@
   flex-direction: row;
 
   .text-wrapper{
+    width: 200px;
     border-radius: 3px;
     background-color: $bg-light;
   }

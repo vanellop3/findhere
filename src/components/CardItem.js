@@ -46,6 +46,7 @@ const CardItem = (props) => {
                     <Card.Text> {props.obj.title}</Card.Text>
                     <Card.Text> Description: {props.obj.description}</Card.Text>
                     <Card.Text> Place: {props.obj.town}</Card.Text>
+                    <Card.Text> Phone: {props.obj.phone}</Card.Text>
                 </div>
             </Card.Body>
             {/* <Card.Footer className="text-muted">Call now: {props.obj.phone}</Card.Footer> */}
