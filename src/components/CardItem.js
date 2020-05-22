@@ -1,15 +1,10 @@
 import React, {Component, useState} from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import CardModal from "./Card-Modal";
 
 
 const CardItem = (props) => {
-
-    const [expanded, setExpanded] = useState(false);
-
-    function toggleExpanded(e) {
-        setExpanded(!expanded);
-    }
 
     function categoryImg() {
         switch (props.obj.category) {
@@ -36,20 +31,12 @@ const CardItem = (props) => {
                 <div className="text-wrapper">
                     {categoryImg()}
                     <Card.Title>{props.obj.category}</Card.Title>
-                    <Card.Text>
-                        Price: {props.obj.price}$
-
-                    </Card.Text>
-                    <button onClick={toggleExpanded} className="btn--primary">More info</button>
-                </div>
-                <div className={`${expanded ? 'expanded-card' : 'normal-card'}`}>
-                    <Card.Text> {props.obj.title}</Card.Text>
-                    <Card.Text> Description: {props.obj.description}</Card.Text>
-                    <Card.Text> Place: {props.obj.town}</Card.Text>
-                    <Card.Text> Phone: {props.obj.phone}</Card.Text>
+                    <Card.Text>{props.obj.title}</Card.Text>
                 </div>
             </Card.Body>
-            {/* <Card.Footer className="text-muted">Call now: {props.obj.phone}</Card.Footer> */}
+            <CardModal title={props.obj.title} desc={props.obj.description}
+                       place={props.obj.town} phone={props.obj.phone} category={props.obj.category}
+                       categoryImg={categoryImg}/>
         </Card>
     )
         ;

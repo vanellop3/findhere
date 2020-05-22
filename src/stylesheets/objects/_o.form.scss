@@ -1,7 +1,16 @@
-.centered--column{
+.centered--column {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: $basic-space *10;
+
+  .button__wrap {
+    display: flex;
+    flex-direction: column;
+
+    .btn--special{
+      margin: $basic-space *2 auto;
+    }
+  }
 }
