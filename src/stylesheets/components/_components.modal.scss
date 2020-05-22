@@ -1,0 +1,11 @@
+.modal-content{
+  background-color: #ffdab9f7;;
+
+  .card__img{
+    display: flex;
+    width: 300px;
+    margin: 0 auto;
+    border-bottom: 2px double $main-dark;
+
+  }
+}
