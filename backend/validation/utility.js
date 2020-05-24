@@ -6,7 +6,6 @@ module.exports = function validateUtility(data) {
     data.title = !isEmpty(data.title) ? data.title : '';
     data.category = !isEmpty(data.category) ? data.category : '';
     data.price = !isEmpty(data.price) ? data.price : '';
-    data.phone = !isEmpty(data.phone) ? data.phone : '';
     data.town = !isEmpty(data.town) ? data.town : '';
 
     if (!Validator.isLength(data.title, {min: 2, max: 100})) {
@@ -27,10 +26,6 @@ module.exports = function validateUtility(data) {
 
     if (Validator.isEmpty(data.price)) {
         errors.price = 'Price is required';
-    }
-
-    if (Validator.isEmpty(data.phone)) {
-        errors.phone = 'Mobile phone is required';
     }
 
     return {
