@@ -43,7 +43,7 @@ class CreateUtility extends Component {
             price: this.state.price,
             town: this.state.town,
             creatorId: this.props.auth.user.id,
-            phone: this.state.phone
+            phone: this.props.auth.user.phone
 
         };
         this.props.addUtility(utilityObject, this.props.history);
@@ -128,15 +128,11 @@ class CreateUtility extends Component {
                     <div className="form-group">
                         <input
                             type="number"
-                            placeholder="Phone"
-                            className={classnames('form-control form-control-lg', {
-                                'is-invalid': errors.phone
-                            })}
+                            placeholder={this.props.auth.user.phone}
                             name="phone"
-                            onChange={this.handleInputChange}
-                            value={this.state.phone}
+                            value={this.props.auth.user.phone}
+                            disabled="disabled"
                         />
-                        {errors.phone && (<div className="invalid-feedback">{errors.phone}</div>)}
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn--primary">

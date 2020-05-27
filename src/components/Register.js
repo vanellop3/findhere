@@ -9,7 +9,10 @@ class Register extends Component {
     constructor() {
         super();
         this.state = {
-            name: '',
+            username: '',
+            firstName:'',
+            lastName:'',
+            phone:'',
             email: '',
             password: '',
             password_confirm: '',
@@ -28,7 +31,10 @@ class Register extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = {
-            name: this.state.name,
+            username: this.state.username,
+            firstName:this.state.firstName,
+            lastName:this.state.lastName,
+            phone:this.state.phone,
             email: this.state.email,
             password: this.state.password,
             password_confirm: this.state.password_confirm
@@ -65,13 +71,39 @@ class Register extends Component {
                             type="text"
                             placeholder="Name"
                             className={classnames('form-control form-control-lg', {
-                                'is-invalid': errors.name
+                                'is-invalid': errors.username
                             })}
-                            name="name"
+                            name="username"
                             onChange={ this.handleInputChange }
-                            value={ this.state.name }
+                            value={ this.state.username }
                         />
-                        {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+                        {errors.username && (<div className="invalid-feedback">{errors.username}</div>)}
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            placeholder="first name"
+                            className={classnames('form-control form-control-lg', {
+                                'is-invalid': errors.firstName
+                            })}
+                            name="firstName"
+                            onChange={ this.handleInputChange }
+                            value={ this.state.firstName }
+                        />
+                        {errors.firstName && (<div className="invalid-feedback">{errors.firstName}</div>)}
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            placeholder="last name"
+                            className={classnames('form-control form-control-lg', {
+                                'is-invalid': errors.lastName
+                            })}
+                            name="lastName"
+                            onChange={ this.handleInputChange }
+                            value={ this.state.lastName }
+                        />
+                        {errors.lastName && (<div className="invalid-feedback">{errors.lastName}</div>)}
                     </div>
                     <div className="form-group">
                         <input
@@ -111,6 +143,19 @@ class Register extends Component {
                             value={ this.state.password_confirm }
                         />
                         {errors.password_confirm && (<div className="invalid-feedback">{errors.password_confirm}</div>)}
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="phone"
+                            placeholder="Phone"
+                            className={classnames('form-control form-control-lg', {
+                                'is-invalid': errors.phone
+                            })}
+                            name="phone"
+                            onChange={this.handleInputChange}
+                            value={this.state.phone}
+                        />
+                        {errors.phone && (<div className="invalid-feedback">{errors.phone}</div>)}
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn--primary">

@@ -24,7 +24,10 @@ exports.registerUser = function (req, res) {
             });
         } else {
             const newUser = new Users({
-                name: req.body.name,
+                username: req.body.username,
+                firstName:req.body.firstName,
+                lastName:req.body.lastName,
+                phone:req.body.phone,
                 email: req.body.email,
                 password: req.body.password,
                 isAdmin: req.body.isAdmin
@@ -71,9 +74,12 @@ exports.loginUser = function (req, res) {
                     if (isMatch) {
                         const payload = {
                             id: user.id,
-                            name: user.name,
+                            username: user.username,
+                            firstName:user.firstName,
+                            lastName:user.lastName,
+                            phone:user.phone,
                             // avatar: user.avatar,
-                            isAdmin: user.isAdmin
+                            isAdmin: user.isAdmin,
                         }
                         jwt.sign(payload, 'secret', {
                             expiresIn: 3600
@@ -121,7 +127,10 @@ exports.updateUser = function (req, res, next) {
 exports.authenticateMe = function (req, res) {
     return res.json({
         id: req.user.id,
-        name: req.user.name,
+        username: req.user.username,
+        firstName: req.user.firstName,
+        lastName:req.user.lastName,
+        phone:req.user.phone,
         email: req.user.email,
         isAdmin: req.user.isAdmin
     });

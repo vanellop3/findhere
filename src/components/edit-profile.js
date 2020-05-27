@@ -7,7 +7,10 @@ class EditProfile extends Component {
     constructor() {
         super();
         this.state = {
-            name: '',
+            username: '',
+            firstName:'',
+            lastName:'',
+            phone:'',
             email: '',
             password: '',
         }
@@ -25,8 +28,11 @@ class EditProfile extends Component {
         axios.get('http://localhost:4000/users/edit-profile/' + this.props.auth.user.id)
             .then(res => {
                 this.setState({
-                    name: res.data.name,
-                    email: res.data.email
+                    username: res.data.username,
+                    firstName:res.data.firstName,
+                    lastName:res.data.lastName,
+                    email: res.data.email,
+                    phone:res.data.phone
                 });
             })
             .catch((error) => {
@@ -39,12 +45,17 @@ class EditProfile extends Component {
         var user;
         if (this.state.password === '') {
             user = {
-                name: this.state.name,
+                username: this.state.username,
+                firstName:this.state.firstName,
+                lastName:this.state.lastName,
+                phone:this.state.phone
             }
         } else {
             user = {
-                name: this.state.name,
-                password: this.state.password,
+                username: this.state.username,
+                firstName:this.state.firstName,
+                lastName:this.state.lastName,
+                password: this.state.password
             }
         }
         axios.put('http://localhost:4000/users/update-profile/' + this.props.auth.user.id, user)
@@ -69,11 +80,31 @@ class EditProfile extends Component {
                     <div className="form-group">
                         <input
                             type="text"
-                            placeholder="Name"
+                            placeholder="username"
                             className={'form-control form-control-lg'}
-                            name="name"
+                            name="username"
                             onChange={this.handleInputChange}
-                            value={this.state.name}
+                            value={this.state.username}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            placeholder="first name"
+                            className={'form-control form-control-lg'}
+                            name="firstName"
+                            onChange={this.handleInputChange}
+                            value={this.state.firstName}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            placeholder="last name"
+                            className={'form-control form-control-lg'}
+                            name="lastName"
+                            onChange={this.handleInputChange}
+                            value={this.state.lastName}
                         />
                     </div>
                     <div className="form-group">
@@ -84,6 +115,15 @@ class EditProfile extends Component {
                             name="email"
                             value={this.state.email}
                             disabled="disabled"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="phone"
+                            placeholder="phone"
+                            className={'form-control form-control-lg'}
+                            name="phone"
+                            value={this.state.phone}
                         />
                     </div>
                     <div className="form-group">

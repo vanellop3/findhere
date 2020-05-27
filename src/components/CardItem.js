@@ -36,7 +36,7 @@ const CardItem = (props) => {
             </Card.Body>
             <CardModal title={props.obj.title} desc={props.obj.description}
                        place={props.obj.town} phone={props.obj.phone} category={props.obj.category}
-                       categoryImg={categoryImg}/>
+                       categoryImg={categoryImg} price={props.obj.price}/>
         </Card>
     )
         ;
