@@ -111,17 +111,19 @@ exports.editUser = function (req, res, next) {
 }
 
 exports.updateUser = function (req, res, next) {
-    Users.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-    }, (error, data) => {
-        if (error) {
-            return next(error);
-            console.log(error);
-        } else {
-            res.json(data)
-            console.log('Profile updated successfully !')
-        }
+    var hashpass;
+    bcrypt.hash(req.body.password, 10).then((hash) => {
+        hashpass = hash;
     })
+
+    Users.findOneAndUpdate({_id:req.params.id}, req.body, function (err, user) {
+        console.log(user);
+        user.password=hashpass;
+        user.save()
+        .then(user => {
+            res.json(user)
+        });
+      });
 }
 
 exports.authenticateMe = function (req, res) {

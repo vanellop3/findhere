@@ -43,18 +43,20 @@ class EditProfile extends Component {
     handleSubmit(e) {
         e.preventDefault();
         var user;
-        if (this.state.password === '') {
+        if (this.state.password == '') {
             user = {
                 username: this.state.username,
                 firstName:this.state.firstName,
                 lastName:this.state.lastName,
                 phone:this.state.phone
             }
+            console.log('no passssss');
         } else {
             user = {
                 username: this.state.username,
                 firstName:this.state.firstName,
                 lastName:this.state.lastName,
+                phone:this.state.phone,
                 password: this.state.password
             }
         }
@@ -72,7 +74,7 @@ class EditProfile extends Component {
 
     render() {
         const {errors} = this.state;
-        console.log(this.state);
+        // console.log(this.state);
         return (
             <div className="container">
                 <h2 style={{marginBottom: '40px'}}>Profile edit</h2>

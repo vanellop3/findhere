@@ -9,7 +9,7 @@ const UserUtilities = () => {
         axios.get('http://localhost:4000/utility/')
             .then(res => {
                 var arr = res.data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-                arr = arr.slice(0, 3);
+                arr = arr.slice(0, 5);
                 setUtility(arr);
             })
             .catch((error) => {
