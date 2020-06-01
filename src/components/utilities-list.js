@@ -102,7 +102,9 @@ class UtilitytList extends Component {
         return (
             <div className="search-wrap">
                 <div className="centered--column">
-                    <CategoryList handleInputChange={this.handleInputChange}/>
+                    <select name="category" onChange={this.handleInputChange}>
+                        <CategoryList/>
+                    </select>
                     <button className="btn--primary" onClick={this.getLocation}>Get utilities near you</button>
                     <div className="button__wrap">
                         <button className="btn--special" onClick={this.sortByDate}>Sort By date</button>
