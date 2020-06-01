@@ -24,10 +24,6 @@ module.exports = function validateUtility(data) {
         errors.town = 'Town is required';
     }
 
-    if (Validator.isEmpty(data.price)) {
-        errors.price = 'Price is required';
-    }
-
     return {
         errors,
         isValid: isEmpty(errors)

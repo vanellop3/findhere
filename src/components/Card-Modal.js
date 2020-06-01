@@ -18,7 +18,7 @@ const CardModal = (props) => {
                 {props.categoryImg()}
                 <Modal.Body>Description: {props.desc}</Modal.Body>
                 <Modal.Body>Place: {props.place}</Modal.Body>
-                <Modal.Body>Price: {props.price}$</Modal.Body>
+                <Modal.Body>Price: {props.price ? props.price : 'discuss later'}</Modal.Body>
                 <Modal.Body>Category: {props.category}</Modal.Body>
                 <Modal.Body>Phone: {props.phone}</Modal.Body>
                 <Modal.Footer>

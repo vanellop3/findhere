@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import classnames from 'classnames';
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { addUtility } from '../actions/utility';
-import { withRouter } from "react-router-dom";
+import {connect} from "react-redux";
+import {addUtility} from '../actions/utility';
+import {withRouter} from "react-router-dom";
 import TownList from '../components/TownList';
 import CategoryList from '../components/CategoryList';
 
@@ -22,7 +22,9 @@ class CreateUtility extends Component {
             creatorId: '',
             town: '',
             phone: '',
-            errors: {}
+            errors: {},
+            isRadioSelected: false,
+            currency: ''
         }
     }
 
@@ -40,12 +42,12 @@ class CreateUtility extends Component {
             title: this.state.title,
             category: this.state.category,
             description: this.state.description,
-            price: this.state.price,
+            price: this.state.price + this.state.currency,
             town: this.state.town,
             creatorId: this.props.auth.user.id,
             phone: this.props.auth.user.phone
-
         };
+
         this.props.addUtility(utilityObject, this.props.history);
         console.log(utilityObject);
         // this.setState({ title: '', category: '', description: '', price: '', creatorId: '', town: '', townLng: '', townLat: '', phone: '' })
@@ -67,11 +69,15 @@ class CreateUtility extends Component {
         }
     }
 
+    changeHandler = () => {
+        this.setState({isRadioSelected: true});
+    };
+
     render() {
-        const { errors } = this.state;
+        const {errors} = this.state;
         return (<div className="form-wrapper">
             <div className="container">
-                <h2 style={{ marginBottom: '40px' }}>Add utility</h2>
+                <h2 style={{marginBottom: '40px'}}>Add utility</h2>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <input
@@ -87,12 +93,16 @@ class CreateUtility extends Component {
                         {errors.title && (<div className="invalid-feedback">{errors.title}</div>)}
                     </div>
                     <div className="form-group">
-                        <CategoryList handleInputChange={this.handleInputChange} />
+                        <select name="category" onChange={this.handleInputChange}
+                                className={classnames({
+                                    'is-invalid': errors.town
+                                })}>
+                            <CategoryList/>
+                        </select>
                         {errors.category && (<div className="invalid-feedback">{errors.category}</div>)}
                     </div>
                     <div className="form-group">
-                        <input
-                            type="text"
+                        <textarea
                             placeholder="Description"
                             className={classnames('form-control form-control-lg', {
                                 'is-invalid': errors.description
@@ -103,31 +113,40 @@ class CreateUtility extends Component {
                         />
                         {errors.description && (<div className="invalid-feedback">{errors.description}</div>)}
                     </div>
-                    <div className="form-group">
+                    <div className="form-group price">
+                        <label className="button--radio">
+                            <input type="radio" onChange={this.changeHandler}/>
+                            <span>Discuss later</span>
+                        </label>
                         <input
                             type="number"
-                            placeholder="Price in $"
-                            className={classnames('form-control form-control-lg', {
-                                'is-invalid': errors.price
-                            })}
+                            placeholder="Price"
+                            disabled={this.state.isRadioSelected}
+                            className={classnames('form-control form-control-lg')}
                             name="price"
                             onChange={this.handleInputChange}
                             value={this.state.price}
                         />
-                        {errors.price && (<div className="invalid-feedback">{errors.price}</div>)}
+
+                        <select className="currency-selector" name="currency" onChange={this.handleInputChange} disabled={this.state.isRadioSelected}>
+                            <option data-symbol="$" data-placeholder="0.00" selected>USD</option>
+                            <option data-symbol="€" data-placeholder="0.00">EUR</option>
+                            <option data-symbol="£" data-placeholder="0.00">BGN</option>
+                        </select>
                     </div>
                     <div className="form-group">
                         <select name="town" onChange={this.handleInputChange}
-                            className={classnames({
-                                'is-invalid': errors.town
-                            })}>
-                            <TownList />
+                                className={classnames({
+                                    'is-invalid': errors.town
+                                })}>
+                            <TownList/>
                         </select>
                         {errors.town && (<div className="invalid-feedback">{errors.town}</div>)}
                     </div>
                     <div className="form-group">
+                        <label>Phone: </label>
                         <input
-                            type="number"
+                            type="tel"
                             placeholder={this.props.auth.user.phone}
                             name="phone"
                             value={this.props.auth.user.phone}
@@ -155,4 +174,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 });
 
-export default connect(mapStateToProps, { addUtility })(withRouter(CreateUtility))
+export default connect(mapStateToProps, {addUtility})(withRouter(CreateUtility))

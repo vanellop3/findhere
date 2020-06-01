@@ -3,6 +3,7 @@ import axios from 'axios';
 import TownList from '../components/TownList';
 import CategoryList from '../components/CategoryList';
 import {connect} from "react-redux";
+import classnames from "classnames";
 
 class EditUtility extends Component {
 
@@ -18,7 +19,9 @@ class EditUtility extends Component {
             description: '',
             price: '',
             town: '',
-            phone: ''
+            phone: '',
+            isRadioSelected: false,
+            currency: ''
         }
     }
 
@@ -32,11 +35,12 @@ class EditUtility extends Component {
                         alert('You are not allowed no access this page');
                         this.props.history.push('/my-utilities');
                     } else {
+                        console.log();
                         this.setState({
                             title: res.data.title,
                             category: res.data.category,
                             description: res.data.description,
-                            price: res.data.price,
+                            price: res.data.price.slice(0, -3),
                             town: res.data.town,
                             phone: res.data.phone
                         });
@@ -61,7 +65,7 @@ class EditUtility extends Component {
             title: this.state.title,
             category: this.state.category,
             description: this.state.description,
-            price: this.state.price,
+            price: this.state.price + this.state.currency,
             town: this.state.town,
             phone: this.state.phone
         };
@@ -78,6 +82,9 @@ class EditUtility extends Component {
         this.props.history.push('/utility-list')
     }
 
+    changeHandler = () => {
+        this.setState({isRadioSelected: true});
+    };
 
     render() {
         return (<div className="form-wrapper">
@@ -95,25 +102,38 @@ class EditUtility extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <CategoryList handleInputChange={this.handleInputChange}/>
+                        <select name="category" onChange={this.handleInputChange}>
+                            <CategoryList/>
+                        </select>
                     </div>
                     <div className="form-group">
-                        <input
-                            type="text"
+                        <textarea
                             name="description"
                             className={'form-control form-control-lg'}
                             onChange={this.handleInputChange}
                             value={this.state.description}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group price">
+                        <label className="button--radio">
+                            <input type="radio" onChange={this.changeHandler}/>
+                            <span>Discuss later</span>
+                        </label>
                         <input
-                            type="number"
+                            placeholder="Price"
+                            disabled={this.state.isRadioSelected}
+                            className={classnames('form-control form-control-lg')}
                             name="price"
-                            className={'form-control form-control-lg'}
                             onChange={this.handleInputChange}
                             value={this.state.price}
                         />
+
+                        <select className="currency-selector" name="currency" onChange={this.handleInputChange}
+                                disabled={this.state.isRadioSelected}>
+                            <option data-symbol="$" data-placeholder="0.00" selected>USD</option>
+                            <option data-symbol="€" data-placeholder="0.00">EUR</option>
+                            <option data-symbol="£" data-placeholder="0.00">BGN</option>
+                        </select>
                     </div>
                     <div className="form-group">
                         <select name="town" onChange={this.handleInputChange}>
@@ -121,8 +141,9 @@ class EditUtility extends Component {
                         </select>
                     </div>
                     <div className="form-group">
+                        <label>Phone: </label>
                         <input
-                            type="number"
+                            type="tel"
                             name="phone"
                             className={'form-control form-control-lg'}
                             onChange={this.handleInputChange}
