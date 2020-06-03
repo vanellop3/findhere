@@ -70,7 +70,7 @@ class CreateUtility extends Component {
     }
 
     changeHandler = () => {
-        this.setState({isRadioSelected: true});
+        this.setState({isRadioSelected: !this.state.isRadioSelected});
     };
 
     render() {
@@ -114,10 +114,6 @@ class CreateUtility extends Component {
                         {errors.description && (<div className="invalid-feedback">{errors.description}</div>)}
                     </div>
                     <div className="form-group price">
-                        <label className="button--radio">
-                            <input type="radio" onChange={this.changeHandler}/>
-                            <span>Discuss later</span>
-                        </label>
                         <input
                             type="number"
                             placeholder="Price"
@@ -129,10 +125,16 @@ class CreateUtility extends Component {
                         />
 
                         <select className="currency-selector" name="currency" onChange={this.handleInputChange} disabled={this.state.isRadioSelected}>
-                            <option data-symbol="$" data-placeholder="0.00" selected>USD</option>
+                            <option selected="true" disabled="disabled">Choose currency</option>
+                            <option data-symbol="$" data-placeholder="0.00">USD</option>
                             <option data-symbol="€" data-placeholder="0.00">EUR</option>
                             <option data-symbol="£" data-placeholder="0.00">BGN</option>
                         </select>
+
+                        <label className="button--radio">
+                            <input type="radio" onChange={this.changeHandler}/>
+                            <span>Discuss later</span>
+                        </label>
                     </div>
                     <div className="form-group">
                         <select name="town" onChange={this.handleInputChange}

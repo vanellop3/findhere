@@ -18,20 +18,19 @@
 
 .form-group {
   label {
-    margin-right: $basic-space*5;
     font-size: 20px;
     color: $gold;
   }
 
   &.price {
     display: flex;
+    justify-content: space-between;
 
     input {
-      flex: 3;
+      max-width: 120px;
     }
 
     .button--radio {
-      flex: 5;
       cursor: pointer;
 
       input {
@@ -48,17 +47,18 @@
       }
 
       span {
-        padding: 7px 14px;
-        border: 2px solid #EEE;
         display: inline-block;
-        color: $pink;
+        padding: $basic-space;
+        border: 2px solid #EEE;
         border-radius: 3px;
+        font-size: 10px;
         text-transform: uppercase;
+        color: $pink;
       }
     }
   }
 
-  .currency-selector{
+  .currency-selector {
     border: 2px solid;
     padding: 0;
     height: 30px;
