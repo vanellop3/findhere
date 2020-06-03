@@ -111,17 +111,21 @@ exports.editUser = function (req, res, next) {
 }
 
 exports.updateUser = function (req, res, next) {
-    var hashpass;
-    bcrypt.hash(req.body.password, 10).then((hash) => {
-        hashpass = hash;
-    })
-
     Users.findOneAndUpdate({_id:req.params.id}, req.body, function (err, user) {
-        console.log(user);
-        user.password=hashpass;
-        user.save()
-        .then(user => {
-            res.json(user)
+        bcrypt.genSalt(10, (err, salt) => {
+            if (err) console.error('There was an error', err);
+            else {
+                bcrypt.hash(req.body.password, salt, (err, hash) => {
+                    if (err) console.error('There was an error', err);
+                    else {
+                        user.password = hash;
+                        user.save()
+                            .then(user => {
+                                res.json(user)
+                            });
+                    }
+                });
+            }
         });
       });
 }
